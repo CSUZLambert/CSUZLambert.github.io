@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>Linux基础指令</title>
-    <url>/2020/11/27/Linux%E5%9F%BA%E7%A1%80%E6%8C%87%E4%BB%A4/</url>
+    <url>/2019/09/29/Linux%E5%9F%BA%E7%A1%80%E6%8C%87%E4%BB%A4/</url>
     <content><![CDATA[<h1 id="Linux基础指令"><a href="#Linux基础指令" class="headerlink" title="Linux基础指令"></a>Linux基础指令</h1><h2 id="ls指令"><a href="#ls指令" class="headerlink" title="ls指令"></a>ls指令</h2><p>​    <strong>ls是list 的简写，ls指令可以查看文件目录。</strong></p>
 <ul>
 <li>可带如下参数：<ol>
@@ -144,7 +144,7 @@
 <hr>
 <h2 id="文件权限"><a href="#文件权限" class="headerlink" title="文件权限"></a>文件权限</h2><h3 id="ls-查看权限"><a href="#ls-查看权限" class="headerlink" title="ls 查看权限"></a>ls 查看权限</h3><p>​    <strong>在 Terminal 中输入<code>ls -l</code>或<code>ll</code>命令即可查看文件的权限</strong></p>
 <p>​    文件权限表示如下图所示：</p>
-<p>​    <img src="E:\Blog\img\File_permissions_in_Linux.png"></p>
+<p>​    <img src="/2019/09/29/Linux%E5%9F%BA%E7%A1%80%E6%8C%87%E4%BB%A4/File_permissions_in_Linux.png"></p>
 <ul>
 <li><p><code>Type</code>: 最常见的是 <code>-</code> 为文件，<code>d</code> 为文件夹，其它的还有<code>l</code>, <code>n</code> … </p>
 </li>
@@ -187,26 +187,8 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2020/11/27/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>Markdown基础语法</title>
-    <url>/2020/11/27/Markdown%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</url>
+    <url>/2019/09/29/Markdown%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</url>
     <content><![CDATA[<h1 id="Markdown基础语法"><a href="#Markdown基础语法" class="headerlink" title="Markdown基础语法"></a>Markdown基础语法</h1><h2 id="一-、标题"><a href="#一-、标题" class="headerlink" title="一 、标题"></a>一 、标题</h2><p>​        在想要设置为标题的文字前面加#来表示。一个#是一级标题，二个#是二级标题，最多支持六级标题。</p>
 <p>注：#后跟一个空格再写文字。</p>
 <p>​    <strong>示例：</strong></p>
@@ -335,7 +317,7 @@
 </ul>
 <p><strong>各类希腊字母表：</strong></p>
 <p>eg:$\alpha$ <code>$alpha$</code></p>
-<p><img src="E:\Blog\img\Alphabet.png" alt="Alphabet"></p>
+<p><img src="/2019/09/29/Markdown%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/Alphabet.png" alt="Alphabet"></p>
 <p><strong>上下标、根号、省略号</strong></p>
 <ul>
 <li><p>上标：^ eg: $ x^2$ <code>$x^2$</code></p>
@@ -368,7 +350,7 @@
 <p><strong>分隔符</strong></p>
 <p>​    各种括号$()[]{}\langle$$\rangle$用<code>$()[]\&#123;\&#125;\langle$$\rangle$</code>等命令表示。花括号通常用来输入命令和环境的参数，所以在数学公式中前面要加 \。可以在上述分隔符前面加 \big \Big \bigg \Bigg 等命令来调整大小。</p>
 <p><strong>箭头</strong></p>
-<p><img src="E:\Blog\img\arrow.png" alt="arrow"></p>
+<p><img src="/2019/09/29/Markdown%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/arrow.png" alt="arrow"></p>
 <p><strong>分段函数</strong></p>
 <p><code>$f(n)=         \begin&#123;cases&#125;             n/2, &amp; \text&#123;if $n$ is even&#125;\\             3n+1,&amp; \text&#123;if $n$ is odd&#125;         \end&#123;cases&#125;$</code></p>
 <p>$f(n)=<br>        \begin{cases}<br>            n/2, &amp; \text{if $n$ is even}\<br>            3n+1,&amp; \text{if $n$ is odd}<br>        \end{cases}$</p>
@@ -439,13 +421,31 @@
         <category>基础技术</category>
       </categories>
       <tags>
-        <tag>markdown</tag>
+        <tag>Markdown</tag>
       </tags>
   </entry>
   <entry>
-    <title>markdown中公式编辑教程</title>
-    <url>/2020/11/27/LaTeX%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</url>
-    <content><![CDATA[<h1 id="markdown中公式编辑教程"><a href="#markdown中公式编辑教程" class="headerlink" title="markdown中公式编辑教程"></a>markdown中公式编辑教程</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a><strong>目录</strong></h2><ul>
+    <title>Hello World</title>
+    <url>/2020/11/27/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Markdown中公式编辑教程</title>
+    <url>/2019/09/29/LaTeX%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="Markdown中公式编辑教程"><a href="#Markdown中公式编辑教程" class="headerlink" title="Markdown中公式编辑教程"></a>Markdown中公式编辑教程</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a><strong>目录</strong></h2><ul>
 <li><a href="#%E5%B8%8C%E8%85%8A%E5%AD%97%E6%AF%8D">希腊字母</a></li>
 <li><a href="#%E4%B8%8A%E6%A0%87%E4%B8%8E%E4%B8%8B%E6%A0%87">上标与下标</a></li>
 <li>括号<ul>
@@ -788,7 +788,7 @@
         <category>基础技术</category>
       </categories>
       <tags>
-        <tag>markdown</tag>
+        <tag>Markdown</tag>
         <tag>LaTex</tag>
       </tags>
   </entry>
