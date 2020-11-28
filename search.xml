@@ -1,6 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Docker(nvidia-docker)使用教程</title>
+    <url>/2019/10/29/Docker(nvidia-docker)%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[<h1 id="Docker-nvidia-docker-使用教程"><a href="#Docker-nvidia-docker-使用教程" class="headerlink" title="Docker(nvidia-docker)使用教程"></a>Docker(nvidia-docker)使用教程</h1><h2 id="Docker国内镜像源"><a href="#Docker国内镜像源" class="headerlink" title="Docker国内镜像源"></a>Docker国内镜像源</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;registry-mirrors&quot;</span>: [</span><br><span class="line">    <span class="string">&quot;https://registry.docker-cn.com&quot;</span>,</span><br><span class="line">    <span class="string">&quot;https://hub-mirror.c.163.com&quot;</span>,</span><br><span class="line">    <span class="string">&quot;https://docker.mirrors.ustc.edu.cn&quot;</span></span><br><span class="line">  ],</span><br></pre></td></tr></table></figure>
+
+<h2 id="Docker启动、停止、查看运行状态"><a href="#Docker启动、停止、查看运行状态" class="headerlink" title="Docker启动、停止、查看运行状态"></a>Docker启动、停止、查看运行状态</h2><h3 id="启动docker"><a href="#启动docker" class="headerlink" title="启动docker"></a>启动docker</h3><p><code>systemctl start docker</code></p>
+<h3 id="关闭docker"><a href="#关闭docker" class="headerlink" title="关闭docker"></a>关闭docker</h3><p><code>systemctl stop docker</code></p>
+<h3 id="查看docker运行状态"><a href="#查看docker运行状态" class="headerlink" title="查看docker运行状态"></a>查看docker运行状态</h3><p><code>systemctl status docker</code></p>
+<h2 id="镜像操作"><a href="#镜像操作" class="headerlink" title="镜像操作"></a>镜像操作</h2><p>从仓库中搜索镜像<br><code>docker search 镜像名</code></p>
+<h3 id="从仓库获取镜像"><a href="#从仓库获取镜像" class="headerlink" title="从仓库获取镜像"></a>从仓库获取镜像</h3><p><code>docker pull 镜像名:版本号</code></p>
+<h3 id="上传镜像到仓库"><a href="#上传镜像到仓库" class="headerlink" title="上传镜像到仓库"></a>上传镜像到仓库</h3><p><code>docker push 镜像名:版本号</code></p>
+<h3 id="查看本地镜像"><a href="#查看本地镜像" class="headerlink" title="查看本地镜像"></a>查看本地镜像</h3><p><code>docker images</code></p>
+<h3 id="删除本地镜像"><a href="#删除本地镜像" class="headerlink" title="删除本地镜像"></a>删除本地镜像</h3><p><code>docker rmi 镜像名:版本号</code></p>
+<h2 id="容器操作"><a href="#容器操作" class="headerlink" title="容器操作"></a>容器操作</h2><h3 id="将镜像运行成一个容器"><a href="#将镜像运行成一个容器" class="headerlink" title="将镜像运行成一个容器"></a>将镜像运行成一个容器</h3><p><code>docker run 镜像名:版本号</code></p>
+<blockquote>
+<p>参数：<br>-i 持续运行<br>-t 分配伪终端<br>-d 后台运行<br>-p 外部端口:内部端口 端口映射<br>-v 外部文件:内部文件 文件映射<br>–gpus 指定gpu<br>–shm-size 共享内存大小<br>–name 运行容器名称<br>示例：docker run -idt -p 30000:22 -p 6006:6006 -p 8097:8097 -v /home:/home –gpus all –shm-size 64G –name ubuntu ubuntu:16.04</p>
+</blockquote>
+<h3 id="查看正在运行的容器"><a href="#查看正在运行的容器" class="headerlink" title="查看正在运行的容器"></a>查看正在运行的容器</h3><p><code>docker ps</code></p>
+<h3 id="查看所有容器"><a href="#查看所有容器" class="headerlink" title="查看所有容器"></a>查看所有容器</h3><p><code>docker ps -a</code></p>
+<h3 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h3><p><code>docker start 容器名或ID</code></p>
+<h3 id="停止容器"><a href="#停止容器" class="headerlink" title="停止容器"></a>停止容器</h3><p><code>docker stop 容器名或ID</code></p>
+<h3 id="重启容器"><a href="#重启容器" class="headerlink" title="重启容器"></a>重启容器</h3><p><code>docker restart 容器名或ID</code></p>
+<h3 id="删除容器"><a href="#删除容器" class="headerlink" title="删除容器"></a>删除容器</h3><p><code>docker rm -f 容器名或ID</code></p>
+<h3 id="进入容器"><a href="#进入容器" class="headerlink" title="进入容器"></a>进入容器</h3><p><code>docker exec -it 容器名或ID bash</code></p>
+<h3 id="退出容器"><a href="#退出容器" class="headerlink" title="退出容器"></a>退出容器</h3><p><code>exit</code></p>
+<h3 id="将容器保存为镜像"><a href="#将容器保存为镜像" class="headerlink" title="将容器保存为镜像"></a>将容器保存为镜像</h3><p><code>docker commit 容器名或ID 镜像名</code></p>
+<h2 id="镜像保存和加载"><a href="#镜像保存和加载" class="headerlink" title="镜像保存和加载"></a>镜像保存和加载</h2><h3 id="将镜像保存为tar文件"><a href="#将镜像保存为tar文件" class="headerlink" title="将镜像保存为tar文件"></a>将镜像保存为tar文件</h3><p><code>docker save 镜像名 &gt; 保存文件名.tar</code></p>
+<h3 id="从tar文件中加载镜像"><a href="#从tar文件中加载镜像" class="headerlink" title="从tar文件中加载镜像"></a>从tar文件中加载镜像</h3><p><code>docker load &lt; 文件名.tar</code></p>
+<h3 id="通过Dockerfile构建镜像"><a href="#通过Dockerfile构建镜像" class="headerlink" title="通过Dockerfile构建镜像"></a>通过Dockerfile构建镜像</h3><p><code>Docker build -t 镜像名:版本号 Dockerfile</code></p>
+<h2 id="宿主机与容器之间拷贝文件"><a href="#宿主机与容器之间拷贝文件" class="headerlink" title="宿主机与容器之间拷贝文件"></a>宿主机与容器之间拷贝文件</h2><h3 id="宿主机拷贝文件到容器"><a href="#宿主机拷贝文件到容器" class="headerlink" title="宿主机拷贝文件到容器"></a>宿主机拷贝文件到容器</h3><p><code>docker cp 宿主机文件 容器名或ID:容器拷贝路径</code></p>
+<h3 id="容器拷贝文件到宿主机"><a href="#容器拷贝文件到宿主机" class="headerlink" title="容器拷贝文件到宿主机"></a>容器拷贝文件到宿主机</h3><p><code>docker cp 容器名或ID:容器文件 宿主机拷贝路径</code></p>
+<h2 id="ssh连接docker容器"><a href="#ssh连接docker容器" class="headerlink" title="ssh连接docker容器"></a>ssh连接docker容器</h2><ol>
+<li><p>映射22号到宿主机端口<br><code>-p 宿主机端口:22</code></p>
+</li>
+<li><p>修改容器内root用户密码<br><code>passwd root</code></p>
+</li>
+<li><p>安装openssh-server<br><code>apt-get install openssh-server</code></p>
+</li>
+<li><p>修改配置文件<br><code>vim /etc/ssh/sshd_config</code></p>
+</li>
+<li><p>重启ssh服务<br><code>ssh restart</code></p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>Docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Docker安装ubuntu16.04容器</title>
+    <url>/2019/10/29/Docker%E5%AE%89%E8%A3%85ubuntu16.04%E5%AE%B9%E5%99%A8/</url>
+    <content><![CDATA[<h1 id="Docker安装Ubuntu16-04容器"><a href="#Docker安装Ubuntu16-04容器" class="headerlink" title="Docker安装Ubuntu16.04容器"></a>Docker安装Ubuntu16.04容器</h1><h2 id="Docker安装Ubuntu16-04"><a href="#Docker安装Ubuntu16-04" class="headerlink" title="Docker安装Ubuntu16.04"></a>Docker安装Ubuntu16.04</h2><p><code>docker pull ubuntu:16.04</code></p>
+<h2 id="运行Ubuntu容器"><a href="#运行Ubuntu容器" class="headerlink" title="运行Ubuntu容器"></a>运行Ubuntu容器</h2><p><code>docker run -itd --name ubuntu ubuntu:16.04</code></p>
+<h2 id="进入Ubuntu容器"><a href="#进入Ubuntu容器" class="headerlink" title="进入Ubuntu容器"></a>进入Ubuntu容器</h2><p><code>docker exec -it ubuntu bash</code></p>
+<h3 id="更新软件源"><a href="#更新软件源" class="headerlink" title="更新软件源"></a>更新软件源</h3><h4 id="修改-etc-apt-sources-list文件"><a href="#修改-etc-apt-sources-list文件" class="headerlink" title="修改/etc/apt/sources.list文件"></a>修改/etc/apt/sources.list文件</h4><blockquote>
+<p>echo “”&gt;/etc/apt/sources.list<br>echo “deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-security main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-updates main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-proposed main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-backports main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-security main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-updates main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-proposed main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-backports main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list</p>
+</blockquote>
+<h4 id="然后更新"><a href="#然后更新" class="headerlink" title="然后更新"></a>然后更新</h4><blockquote>
+<p>apt-get update</p>
+</blockquote>
+<h3 id="查看ubuntu安装的扩展包"><a href="#查看ubuntu安装的扩展包" class="headerlink" title="查看ubuntu安装的扩展包"></a>查看ubuntu安装的扩展包</h3><p><code>dpkg --get-selections</code></p>
+<h3 id="安装vim"><a href="#安装vim" class="headerlink" title="安装vim"></a>安装vim</h3><p><code>apt-get install vim</code></p>
+<h3 id="安装基础网络命令：ping、ifconfig和wget"><a href="#安装基础网络命令：ping、ifconfig和wget" class="headerlink" title="安装基础网络命令：ping、ifconfig和wget"></a>安装基础网络命令：ping、ifconfig和wget</h3><blockquote>
+<p>apt-get install net-tools        # ifconfig<br>apt-get install iputils-ping        # ping<br>apt-get install wget            #wget</p>
+</blockquote>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><h3 id="阿里源"><a href="#阿里源" class="headerlink" title="阿里源"></a>阿里源</h3><blockquote>
+<p>deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic main restricted universe multiverse<br>deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-security main restricted universe multiverse<br>deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-updates main restricted universe multiverse<br>deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-proposed main restricted universe multiverse<br>deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-backports main restricted universe multiverse<br>deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic main restricted universe multiverse<br>deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-security main restricted universe multiverse<br>deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-updates main restricted universe multiverse<br>deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-proposed main restricted universe multiverse<br>deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-backports main restricted universe multiverse</p>
+</blockquote>
+<h3 id="中科大源"><a href="#中科大源" class="headerlink" title="中科大源"></a>中科大源</h3><blockquote>
+<p>deb <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic main restricted universe multiverse<br>deb-src <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic main restricted universe multiverse<br>deb <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic-updates main restricted universe multiverse<br>deb-src <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic-updates main restricted universe multiverse<br>deb <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic-backports main restricted universe multiverse<br>deb-src <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic-backports main restricted universe multiverse<br>deb <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic-security main restricted universe multiverse<br>deb-src <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic-security main restricted universe multiverse<br>deb <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic-proposed main restricted universe multiverse<br>deb-src <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic-proposed main restricted universe multiverse</p>
+</blockquote>
+<h3 id="163源"><a href="#163源" class="headerlink" title="163源"></a>163源</h3><blockquote>
+<p>deb <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic main restricted universe multiverse<br>deb <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic-security main restricted universe multiverse<br>deb <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic-updates main restricted universe multiverse<br>deb <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic-proposed main restricted universe multiverse<br>deb <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic-backports main restricted universe multiverse<br>deb-src <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic main restricted universe multiverse<br>deb-src <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic-security main restricted universe multiverse<br>deb-src <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic-updates main restricted universe multiverse<br>deb-src <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic-proposed main restricted universe multiverse<br>deb-src <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic-backports main restricted universe multiverse</p>
+</blockquote>
+<h3 id="清华源"><a href="#清华源" class="headerlink" title="清华源"></a>清华源</h3><blockquote>
+<p>deb <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic main restricted universe multiverse<br>deb-src <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic main restricted universe multiverse<br>deb <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic-updates main restricted universe multiverse<br>deb-src <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic-updates main restricted universe multiverse<br>deb <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic-backports main restricted universe multiverse<br>deb-src <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic-backports main restricted universe multiverse<br>deb <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic-security main restricted universe multiverse<br>deb-src <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic-security main restricted universe multiverse<br>deb <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic-proposed main restricted universe multiverse<br>deb-src <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic-proposed main restricted universe multiverse</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>Docker</tag>
+        <tag>Ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux基础指令</title>
     <url>/2019/09/29/Linux%E5%9F%BA%E7%A1%80%E6%8C%87%E4%BB%A4/</url>
     <content><![CDATA[<h1 id="Linux基础指令"><a href="#Linux基础指令" class="headerlink" title="Linux基础指令"></a>Linux基础指令</h1><h2 id="ls指令"><a href="#ls指令" class="headerlink" title="ls指令"></a>ls指令</h2><p>​    <strong>ls是list 的简写，ls指令可以查看文件目录。</strong></p>
@@ -441,6 +530,102 @@
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>Ubuntu安装Anaconda</title>
+    <url>/2019/10/29/Ubuntu%E5%AE%89%E8%A3%85Anaconda/</url>
+    <content><![CDATA[<h1 id="Ubuntu安装Anaconda"><a href="#Ubuntu安装Anaconda" class="headerlink" title="Ubuntu安装Anaconda"></a>Ubuntu安装Anaconda</h1><h2 id="获取Anaconda安装文件"><a href="#获取Anaconda安装文件" class="headerlink" title="获取Anaconda安装文件"></a>获取Anaconda安装文件</h2><blockquote>
+<p>wget <a href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-2020.02-Linux-x86_64.sh">https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-2020.02-Linux-x86_64.sh</a></p>
+</blockquote>
+<h2 id="安装Anaconda"><a href="#安装Anaconda" class="headerlink" title="安装Anaconda"></a>安装Anaconda</h2><p><code>bash Anaconda3-2020.02-Linux-x86_64.sh</code></p>
+<h2 id="查看conda版本"><a href="#查看conda版本" class="headerlink" title="查看conda版本"></a>查看conda版本</h2><p><code>conda -V</code></p>
+<h2 id="查看conda扩展包"><a href="#查看conda扩展包" class="headerlink" title="查看conda扩展包"></a>查看conda扩展包</h2><p><code>conda list</code></p>
+<h2 id="创建虚拟环境"><a href="#创建虚拟环境" class="headerlink" title="创建虚拟环境"></a>创建虚拟环境</h2><blockquote>
+<p>conda create –name 虚拟环境名 –clone 克隆环境<br>也可直接指定python版本<br>conda create –name 虚拟环境名 python=版本号</p>
+</blockquote>
+<h2 id="查看虚拟环境列表"><a href="#查看虚拟环境列表" class="headerlink" title="查看虚拟环境列表"></a>查看虚拟环境列表</h2><p><code>conda env list</code></p>
+<h2 id="激活虚拟环境"><a href="#激活虚拟环境" class="headerlink" title="激活虚拟环境"></a>激活虚拟环境</h2><p><code>conda activate 虚拟环境名</code></p>
+<h2 id="取消虚拟环境激活"><a href="#取消虚拟环境激活" class="headerlink" title="取消虚拟环境激活"></a>取消虚拟环境激活</h2><p><code>conda deactivate</code></p>
+<h2 id="删除虚拟环境"><a href="#删除虚拟环境" class="headerlink" title="删除虚拟环境"></a>删除虚拟环境</h2><p><code>conda remove --name 虚拟环境名 --all</code></p>
+]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>Anaconda</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>编译安装FFmpeg</title>
+    <url>/2019/10/29/%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85FFmpeg/</url>
+    <content><![CDATA[<h1 id="编译安装FFmpeg"><a href="#编译安装FFmpeg" class="headerlink" title="编译安装FFmpeg"></a>编译安装FFmpeg</h1><h2 id="下载-ffmpeg-源码"><a href="#下载-ffmpeg-源码" class="headerlink" title="下载 ffmpeg 源码"></a>下载 ffmpeg 源码</h2><blockquote>
+<p>下载地址: <a href="http://www.ffmpeg.org/download.html">www.ffmpeg.org/download.html</a></p>
+</blockquote>
+<h2 id="解压下载的ffmpeg源码"><a href="#解压下载的ffmpeg源码" class="headerlink" title="解压下载的ffmpeg源码"></a>解压下载的ffmpeg源码</h2><blockquote>
+<p>tar -jxvf ffmpeg-4.2.3.tar.bz2</p>
+</blockquote>
+<h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><blockquote>
+<p>apt-get -y install autoconf automake build-essential libass-dev libfreetype6-dev libsdl2-dev libtheora-dev libtool libva-dev libvdpau-dev libvorbis-dev libxcb1-dev libxcb-shm0-dev libxcb-xfixes0-dev pkg-config texinfo zlib1g-dev</p>
+</blockquote>
+<h2 id="进入ffmpeg-4-2-3目录"><a href="#进入ffmpeg-4-2-3目录" class="headerlink" title="进入ffmpeg-4.2.3目录"></a>进入ffmpeg-4.2.3目录</h2><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>./configure –prefix=/usr/local/ffmpeg –enable-shared</p>
+<h4 id="Mac-平台："><a href="#Mac-平台：" class="headerlink" title="Mac 平台："></a>Mac 平台：</h4><blockquote>
+<p>./configure –prefix=/usr/local/ffmpeg –enable-gpl –enable-nonfree –enable-libfdk-aac –enable-libx264 –enable-libx265 –enable-filter=delogo –enable-debug –disable-optimizations –enable-libspeex –enable-videotoolbox –enable-shared –enable-pthreads –enable-version3 –enable-hardcoded-tables –cc=clang –host-cflags= –host-ldflags= </p>
+</blockquote>
+<h4 id="Linux平台"><a href="#Linux平台" class="headerlink" title="Linux平台"></a>Linux平台</h4><blockquote>
+<p>./configure –prefix=/usr/local/ffmpeg –enable-gpl –enable-nonfree –enable-libfdk-aac –enable-libx264 –enable-libx265 –enable-filter=delogo –enable-debug –disable-optimizations –enable-libspeex –enable-shared –enable-pthreads</p>
+</blockquote>
+<h4 id="Windows平台"><a href="#Windows平台" class="headerlink" title="Windows平台"></a>Windows平台</h4><blockquote>
+<p>./configure –prefix=/usr/local/ffmpeg –enable-gpl –enable-nonfree –enable-libfdk-aac –enable-libx264 –enable-libx265 –enable-filter=delogo –enable-debug –disable-optimizations –enable-libspeex –enable-static</p>
+</blockquote>
+<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><p><code>make</code></p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p><code>make install</code></p>
+<h2 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h2><h3 id="修改-bashrc-文件"><a href="#修改-bashrc-文件" class="headerlink" title="修改 ~/.bashrc 文件"></a>修改 ~/.bashrc 文件</h3><p><code>vim ~/.bashrc</code></p>
+<h3 id="添加环境变量"><a href="#添加环境变量" class="headerlink" title="添加环境变量"></a>添加环境变量</h3><p>export PATH=/usr/local/ffmpeg/bin:$PATH<br>export LD_LIBRARY_PATH=/usr/local/ffmpeg/lib:$LD_LIBRARY_PATH<br>export PKG_CONFIG_PATH=/usr/local/ffmpeg/lib/pkgconfig:$PKG_CONFIG_PATH</p>
+<h3 id="使环境变量生效"><a href="#使环境变量生效" class="headerlink" title="使环境变量生效"></a>使环境变量生效</h3><p><code>source ~/.bashrc</code></p>
+<h3 id="查看环境变量"><a href="#查看环境变量" class="headerlink" title="查看环境变量"></a>查看环境变量</h3><blockquote>
+<p>echo $PATH</p>
+<p>echo $LD_LIBRARY_PATH</p>
+<p>echo $PKG_CONFIG_PATH</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>FFmpeg</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>非root用户源码编译安装GCC</title>
+    <url>/2019/10/29/%E9%9D%9Eroot%E7%94%A8%E6%88%B7%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85GCC/</url>
+    <content><![CDATA[<h1 id="非root用户源码编译安装GCC"><a href="#非root用户源码编译安装GCC" class="headerlink" title="非root用户源码编译安装GCC"></a>非root用户源码编译安装GCC</h1><h2 id="下载指定版本的GCC-source-code并解压"><a href="#下载指定版本的GCC-source-code并解压" class="headerlink" title="下载指定版本的GCC source code并解压"></a>下载指定版本的GCC source code并解压</h2><p>我选择的是gcc-6.5.0 <code>https://ftp.gnu.org/gnu/gcc/gcc-6.5.0/gcc-6.5.0.tar.gz</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar -zxvf gcc-6.5.0.tar.gz</span><br></pre></td></tr></table></figure>
+
+<h2 id="进入解压后的文件，执行以下命令下载gcc依赖包"><a href="#进入解压后的文件，执行以下命令下载gcc依赖包" class="headerlink" title="进入解压后的文件，执行以下命令下载gcc依赖包"></a>进入解压后的文件，执行以下命令下载gcc依赖包</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./contrib/download_prerequistites</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看软链接是否建立成功-即ln-sf对应的文件是否存在"><a href="#查看软链接是否建立成功-即ln-sf对应的文件是否存在" class="headerlink" title="查看软链接是否建立成功(即ln -sf对应的文件是否存在)"></a>查看软链接是否建立成功(即ln -sf对应的文件是否存在)</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cat contrib/download_prerequisites</span><br></pre></td></tr></table></figure>
+
+<h2 id="编译GCC"><a href="#编译GCC" class="headerlink" title="编译GCC"></a>编译GCC</h2><p>（用系统的GCC编译自己的GCC，其中<code>/path/to/install/gcc-6.5.0</code>是gcc安装的目录 ）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir build_dir</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> build_dir</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">../configure --disable-checking --enable-languages=c,c++ --disable-multilib --prefix=/path/to/install/gcc-6.5.0 --enable-threads=posix</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">make -j64   <span class="comment"># 多线程编译</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+<h2 id="为当前用户配置环境变量"><a href="#为当前用户配置环境变量" class="headerlink" title="为当前用户配置环境变量"></a>为当前用户配置环境变量</h2><h3 id="切换当前用户的目录，运行以下命令"><a href="#切换当前用户的目录，运行以下命令" class="headerlink" title="切换当前用户的目录，运行以下命令"></a>切换当前用户的目录，运行以下命令</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vi ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<h3 id="在-bashrc末尾加入下面的代码"><a href="#在-bashrc末尾加入下面的代码" class="headerlink" title="在.bashrc末尾加入下面的代码"></a>在.bashrc末尾加入下面的代码</h3><p><code>export PATH=/path/to/install/gcc-6.5.0/bin:/path/to/install/gcc-6.5.0/lib64:$PATH</code><br><code>export LD_LIBRARY_PATH=/path/to/install/gcc-6.5.0/lib/:$LD_LIBRARY_PATH</code></p>
+<h2 id="激活环境变量"><a href="#激活环境变量" class="headerlink" title="激活环境变量"></a>激活环境变量</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<h2 id="测试gcc版本"><a href="#测试gcc版本" class="headerlink" title="测试gcc版本"></a>测试gcc版本</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gcc -v</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>GCC</tag>
+      </tags>
   </entry>
   <entry>
     <title>Markdown中公式编辑教程</title>

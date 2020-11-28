@@ -38,6 +38,135 @@
   </entry>
   
   <entry>
+    <title>Docker(nvidia-docker)使用教程</title>
+    <link href="http://example.com/2019/10/29/Docker(nvidia-docker)%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/"/>
+    <id>http://example.com/2019/10/29/Docker(nvidia-docker)%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</id>
+    <published>2019-10-29T04:12:12.000Z</published>
+    <updated>2020-11-28T10:39:33.743Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Docker-nvidia-docker-使用教程&quot;&gt;&lt;a href=&quot;#Docker-nvidia-docker-使用教程&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="环境搭建" scheme="http://example.com/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    
+    
+    <category term="Docker" scheme="http://example.com/tags/Docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Docker安装ubuntu16.04容器</title>
+    <link href="http://example.com/2019/10/29/Docker%E5%AE%89%E8%A3%85ubuntu16.04%E5%AE%B9%E5%99%A8/"/>
+    <id>http://example.com/2019/10/29/Docker%E5%AE%89%E8%A3%85ubuntu16.04%E5%AE%B9%E5%99%A8/</id>
+    <published>2019-10-29T04:12:12.000Z</published>
+    <updated>2020-11-28T10:50:10.925Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Docker安装Ubuntu16-04容器&quot;&gt;&lt;a href=&quot;#Docker安装Ubuntu16-04容器&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="环境搭建" scheme="http://example.com/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    
+    
+    <category term="Docker" scheme="http://example.com/tags/Docker/"/>
+    
+    <category term="Ubuntu" scheme="http://example.com/tags/Ubuntu/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ubuntu安装Anaconda</title>
+    <link href="http://example.com/2019/10/29/Ubuntu%E5%AE%89%E8%A3%85Anaconda/"/>
+    <id>http://example.com/2019/10/29/Ubuntu%E5%AE%89%E8%A3%85Anaconda/</id>
+    <published>2019-10-29T04:12:12.000Z</published>
+    <updated>2020-11-28T10:43:25.011Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Ubuntu安装Anaconda&quot;&gt;&lt;a href=&quot;#Ubuntu安装Anaconda&quot; class=&quot;headerlink&quot; title=&quot;Ubuntu安装Anaconda&quot;&gt;&lt;/a&gt;Ubuntu安装Anaconda&lt;/h1&gt;&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="环境搭建" scheme="http://example.com/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    
+    
+    <category term="Ubuntu" scheme="http://example.com/tags/Ubuntu/"/>
+    
+    <category term="Anaconda" scheme="http://example.com/tags/Anaconda/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>编译安装FFmpeg</title>
+    <link href="http://example.com/2019/10/29/%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85FFmpeg/"/>
+    <id>http://example.com/2019/10/29/%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85FFmpeg/</id>
+    <published>2019-10-29T04:12:12.000Z</published>
+    <updated>2020-11-28T10:46:03.176Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;编译安装FFmpeg&quot;&gt;&lt;a href=&quot;#编译安装FFmpeg&quot; class=&quot;headerlink&quot; title=&quot;编译安装FFmpeg&quot;&gt;&lt;/a&gt;编译安装FFmpeg&lt;/h1&gt;&lt;h2 id=&quot;下载-ffmpeg-源码&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="环境搭建" scheme="http://example.com/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    
+    
+    <category term="FFmpeg" scheme="http://example.com/tags/FFmpeg/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>非root用户源码编译安装GCC</title>
+    <link href="http://example.com/2019/10/29/%E9%9D%9Eroot%E7%94%A8%E6%88%B7%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85GCC/"/>
+    <id>http://example.com/2019/10/29/%E9%9D%9Eroot%E7%94%A8%E6%88%B7%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85GCC/</id>
+    <published>2019-10-29T04:12:12.000Z</published>
+    <updated>2020-11-28T10:47:46.173Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;非root用户源码编译安装GCC&quot;&gt;&lt;a href=&quot;#非root用户源码编译安装GCC&quot; class=&quot;headerlink&quot; title=&quot;非root用户源码编译安装GCC&quot;&gt;&lt;/a&gt;非root用户源码编译安装GCC&lt;/h1&gt;&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="环境搭建" scheme="http://example.com/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    
+    
+    <category term="GCC" scheme="http://example.com/tags/GCC/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Linux基础指令</title>
     <link href="http://example.com/2019/09/29/Linux%E5%9F%BA%E7%A1%80%E6%8C%87%E4%BB%A4/"/>
     <id>http://example.com/2019/09/29/Linux%E5%9F%BA%E7%A1%80%E6%8C%87%E4%BB%A4/</id>
