@@ -1,6 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Linux基础指令</title>
+    <url>/2019/09/29/Linux%E5%9F%BA%E7%A1%80%E6%8C%87%E4%BB%A4/</url>
+    <content><![CDATA[<h1 id="Linux基础指令"><a href="#Linux基础指令" class="headerlink" title="Linux基础指令"></a>Linux基础指令</h1><h2 id="ls指令"><a href="#ls指令" class="headerlink" title="ls指令"></a>ls指令</h2><p>​    <strong>ls是list 的简写，ls指令可以查看文件目录。</strong></p>
+<ul>
+<li>可带如下参数：<ol>
+<li><code>-l</code> (long 的简写)，表示输出详细信息。这个指令会打印出文件的权限、用户名、文件大小、修改日期、文件名，<code>ls -l</code>可简写为<code>ll</code>；</li>
+<li><code>-a</code> (all 的简写)，表示显示所有文件。包括显示隐藏文件 (以 <code>.</code> 开头)；</li>
+<li><code>-lh</code> (h为human的简写)，<code>-l</code>参数不方便查看，<code>-lh</code>参数是为了方便查看；</li>
+<li><code>--help</code> 查看帮助文档。</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h2 id="cd指令"><a href="#cd指令" class="headerlink" title="cd指令"></a>cd指令</h2><p>​    <strong>cd是Change Directory的简写，cd指令可以切换文件目录。</strong></p>
+<p>​    <strong><code>/</code>表示根目录，即最顶层目录；<code>.</code>表示当前目录；<code>..</code>表示上一级目录。</strong></p>
+<p>​    <strong>打开Linux的 terminal（终端）窗口，默认在用户目录，可使用<code>pwd</code>命令查看绝对路径。</strong></p>
+<p>​    <strong><code>~</code> 一般代表<code>/home/用户目录</code>，Terminal中的 <code>~ $</code> 是指输入指令将在 <code>~</code> 这个目录下执行。</strong></p>
+<ul>
+<li><p>常用<code>cd</code> 命令：</p>
+<ol>
+<li><p>去往子文件夹</p>
+<p>示例：<code>~$ cd Documents</code></p>
+<p>结果：<code>~/Documents$</code></p>
+</li>
+<li><p>返回上一级目录</p>
+<p>示例：<code>~$ cd ..</code></p>
+<p>结果：<code>~$</code></p>
+</li>
+<li><p>返回之前所在目录</p>
+<p>示例：<code>~$ cd -</code></p>
+<p>结果：<code>~/Documents$</code></p>
+</li>
+<li><p>返回上级目录的上级目录</p>
+<p>示例：<code>~$ cd ../..</code></p>
+<p>结果：<code>/home$</code></p>
+</li>
+<li><p>切换到用户目录</p>
+<p>示例：<code>~$ cd ~</code></p>
+<p>结果：<code>~$</code></p>
+</li>
+<li><p>切换到绝对路径对应目录</p>
+<p>示例：<code>~$ cd /home/zl/Documents</code></p>
+<p>结果：<code>~/Documents$</code></p>
+</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h2 id="mkdir指令"><a href="#mkdir指令" class="headerlink" title="mkdir指令"></a>mkdir指令</h2><p>​    <strong>mkdir是make directory的简写，mkdir命令可以创建文件夹。</strong></p>
+<hr>
+<h2 id="rmdir指令"><a href="#rmdir指令" class="headerlink" title="rmdir指令"></a>rmdir指令</h2><p>​    <strong>rmdir是remove directory的简写，rmdir命令可以移除文件夹。</strong></p>
+<p>​    <strong>注意：要移除的文件夹必须是空文件夹，不然会移除失败。</strong></p>
+<hr>
+<h2 id="touch指令"><a href="#touch指令" class="headerlink" title="touch指令"></a>touch指令</h2><p>​    <strong>touch命令可以创建文件。</strong></p>
+<ol>
+<li><p>创建一个文件</p>
+<p><code>~/Documents$ touch file</code></p>
+</li>
+<li><p>创建多个文件</p>
+<p><code>~/Documents$ touch file1 file2 file3</code></p>
+</li>
+</ol>
+<hr>
+<h2 id="rm指令"><a href="#rm指令" class="headerlink" title="rm指令"></a>rm指令</h2><p>​    <strong>rm是remove的简写，rm指令可以移除文件或文件夹。</strong></p>
+<ol>
+<li><p>移除单个文件</p>
+<p><code>rm file</code></p>
+</li>
+<li><p>有提示地移除文件 (为避免误删)</p>
+<p>可带参数：</p>
+<ul>
+<li><code>-i</code> 每个要移除的文件都进行提示</li>
+<li><code>-I</code> 移除文件超过3个文件才进行提示</li>
+</ul>
+</li>
+<li><p>移除文件夹</p>
+<p>使用参数<code>-r</code> 或 <code>-R</code> (recursively) 用来删文件夹。</p>
+<p>和 <code>rmdir</code> 不同，<code>rm -r</code> 可以在文件夹中有文件的情况下删除这个文件夹。</p>
+</li>
+</ol>
+<hr>
+<h2 id="cp指令"><a href="#cp指令" class="headerlink" title="cp指令"></a>cp指令</h2><p>​    **cp是copy的简写，cp命令可以复制文件或文件夹。 **</p>
+<ol>
+<li><p>复制文件</p>
+<p><code>cp file file_copy</code></p>
+<p>注意：如果 file_copy 已经存在，将会直接覆盖已存在的文件。 如果要避免直接覆盖，在cp指令后面加参数<code>-i</code>（interactively）。</p>
+</li>
+<li><p>复制文件夹</p>
+<p><code>cp -R folder/ folder_copy/</code></p>
+<p>注意：复制文件夹，需要加参数<code>-R</code> （recursively）。</p>
+</li>
+</ol>
+<hr>
+<h2 id="mv指令"><a href="#mv指令" class="headerlink" title="mv指令"></a>mv指令</h2><p>​    <strong>mv是move的简写，mv指令可以剪切或重命名文件</strong></p>
+<ol>
+<li><p>剪切文件</p>
+<p><code>mv file folder/</code></p>
+</li>
+<li><p>重命名文件</p>
+<p><code>mv file file_rename</code></p>
+</li>
+</ol>
+<hr>
+<h2 id="nano指令"><a href="#nano指令" class="headerlink" title="nano指令"></a>nano指令</h2><p>​    <strong>nano是linux的一款文字编辑工具。我们做基本的terminal端文本编辑。</strong></p>
+<p>​    <code>nano test.py</code></p>
+<hr>
+<h2 id="cat指令"><a href="#cat指令" class="headerlink" title="cat指令"></a>cat指令</h2><p>​    **cat是concatenate的简写，cat指令可以显示文件内容，或者将某个文件内容写入到其它文件。 **</p>
+<ol>
+<li><p>查看文件内容</p>
+<p><code>cat test.py</code></p>
+</li>
+<li><p>将文件的内容写入另一个文件</p>
+<p><code>cat test.py &gt; test1.py</code></p>
+</li>
+<li><p>将多个文件的内容一起写入另一个文件</p>
+<p><code>cat test.py test1.py &gt; test2.py</code></p>
+</li>
+<li><p>将文件的内容添加到另一个文件的末尾</p>
+<p><code>cat test2.py &gt;&gt; test3.py</code></p>
+</li>
+</ol>
+<hr>
+<h2 id="whereis-指令"><a href="#whereis-指令" class="headerlink" title="whereis 指令"></a>whereis 指令</h2><p>​    <strong>whereis指令可以搜索程序名，并且只搜索二进制文件（参数-b），man说明文件（参数-m）和源代码文件（参数-s）。如果省略参数，则返回所有信息。</strong></p>
+<hr>
+<h2 id="which指令"><a href="#which指令" class="headerlink" title="which指令"></a>which指令</h2><p>​    <strong>which指令可以在PATH变量指定的路径中搜索某个系统命令的位置，并且返回第一个搜索结果。使用which指令可以查看某个系统命令是否存在，以及执行命令的绝对路径。</strong></p>
+<p>​    示例：</p>
+<p>​    <code>which python3</code></p>
+<p>​    结果</p>
+<p>​    <code>/usr/bin/python3</code></p>
+<p>​    <em>补充：（一个使用Python的技巧）</em></p>
+<p>​    如果puthon文件有可执行权限，可以在python文件首行加上#！和python命令的绝对路径，即可在terminal中输入<code>./文件名.py</code>直接执行python文件。</p>
+<p>​    示例：</p>
+<p>test.py</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3  # 告诉电脑执行这个文件用什么加载</span></span><br><span class="line">print(<span class="string">&quot;My test.&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>terminal窗口</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ .&#x2F;test.py</span><br><span class="line">My test.</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="clear指令"><a href="#clear指令" class="headerlink" title="clear指令"></a>clear指令</h2><p>​    <strong>clear命令可以清除当前terminal屏幕内容。</strong></p>
+<hr>
+<h2 id="文件权限"><a href="#文件权限" class="headerlink" title="文件权限"></a>文件权限</h2><h3 id="ls-查看权限"><a href="#ls-查看权限" class="headerlink" title="ls 查看权限"></a>ls 查看权限</h3><p>​    <strong>在 Terminal 中输入<code>ls -l</code>或<code>ll</code>命令即可查看文件的权限</strong></p>
+<p>​    文件权限表示如下图所示：</p>
+<p>​    <img src="/2019/09/29/Linux%E5%9F%BA%E7%A1%80%E6%8C%87%E4%BB%A4/File_permissions_in_Linux.png"></p>
+<ul>
+<li><p><code>Type</code>: 最常见的是 <code>-</code> 为文件，<code>d</code> 为文件夹，其它的还有<code>l</code>, <code>n</code> … </p>
+</li>
+<li><p><code>User</code>: User对应的三个位置表示User身份能对文件做什么处理 </p>
+<p>（<code>r</code> 能读； <code>w</code> 能写； <code>x</code>能执行； <code>-</code> 不能完成某个操作）</p>
+</li>
+<li><p><code>Group</code>: 一个 Group 里可能有一个或多个 user，这些权限的样式和User一样。</p>
+</li>
+<li><p><code>Others</code>: 除了 User 和 Group 的其它人的操作权限，这些权限的样式和User一样。</p>
+</li>
+</ul>
+<h3 id="chmod-修改权限"><a href="#chmod-修改权限" class="headerlink" title="chmod 修改权限"></a>chmod 修改权限</h3><p>​    <strong>chmod是change mode的简写，chmod指令可以修改文件权限。</strong></p>
+<p>​    指令格式：</p>
+<p>​    <code>$ chmod [谁][怎么修改] [哪个文件]</code></p>
+<p>[谁]</p>
+<ul>
+<li><code>u</code>: 对于 User 修改</li>
+<li><code>g</code>: 对于 Group 修改</li>
+<li><code>o</code>: 对于 Others 修改</li>
+<li><code>a</code>: (all) 对于所有人修改</li>
+</ul>
+<p>[怎么修改]</p>
+<ul>
+<li><code>+</code>, <code>-</code>, <code>=</code> 作用形式：加上，减掉，等于某些权限</li>
+<li><code>r</code>, <code>w</code>, <code>x</code> 单个或多个权限一起，比如 <code>r rx</code></li>
+</ul>
+<p>[哪个文件]</p>
+<ul>
+<li>施加操作的文件, 可以为多个</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">chmod u&#x3D;rwx,g&#x3D;rx,o&#x3D;x 文件目录名</span><br><span class="line">chmod o+w 文件目录名 给其它用户增加写的权限</span><br><span class="line">chmod a-x 文件目录名 给所有人去掉可执行文件的权限</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>基础技术</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Markdown基础语法</title>
     <url>/2019/09/29/Markdown%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</url>
     <content><![CDATA[<h1 id="Markdown基础语法"><a href="#Markdown基础语法" class="headerlink" title="Markdown基础语法"></a>Markdown基础语法</h1><h2 id="一-、标题"><a href="#一-、标题" class="headerlink" title="一 、标题"></a>一 、标题</h2><p>​        在想要设置为标题的文字前面加#来表示。一个#是一级标题，二个#是二级标题，最多支持六级标题。</p>
@@ -235,193 +421,7 @@
         <category>基础技术</category>
       </categories>
       <tags>
-        <tag>Markdown</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux基础指令</title>
-    <url>/2019/09/29/Linux%E5%9F%BA%E7%A1%80%E6%8C%87%E4%BB%A4/</url>
-    <content><![CDATA[<h1 id="Linux基础指令"><a href="#Linux基础指令" class="headerlink" title="Linux基础指令"></a>Linux基础指令</h1><h2 id="ls指令"><a href="#ls指令" class="headerlink" title="ls指令"></a>ls指令</h2><p>​    <strong>ls是list 的简写，ls指令可以查看文件目录。</strong></p>
-<ul>
-<li>可带如下参数：<ol>
-<li><code>-l</code> (long 的简写)，表示输出详细信息。这个指令会打印出文件的权限、用户名、文件大小、修改日期、文件名，<code>ls -l</code>可简写为<code>ll</code>；</li>
-<li><code>-a</code> (all 的简写)，表示显示所有文件。包括显示隐藏文件 (以 <code>.</code> 开头)；</li>
-<li><code>-lh</code> (h为human的简写)，<code>-l</code>参数不方便查看，<code>-lh</code>参数是为了方便查看；</li>
-<li><code>--help</code> 查看帮助文档。</li>
-</ol>
-</li>
-</ul>
-<hr>
-<h2 id="cd指令"><a href="#cd指令" class="headerlink" title="cd指令"></a>cd指令</h2><p>​    <strong>cd是Change Directory的简写，cd指令可以切换文件目录。</strong></p>
-<p>​    <strong><code>/</code>表示根目录，即最顶层目录；<code>.</code>表示当前目录；<code>..</code>表示上一级目录。</strong></p>
-<p>​    <strong>打开Linux的 terminal（终端）窗口，默认在用户目录，可使用<code>pwd</code>命令查看绝对路径。</strong></p>
-<p>​    <strong><code>~</code> 一般代表<code>/home/用户目录</code>，Terminal中的 <code>~ $</code> 是指输入指令将在 <code>~</code> 这个目录下执行。</strong></p>
-<ul>
-<li><p>常用<code>cd</code> 命令：</p>
-<ol>
-<li><p>去往子文件夹</p>
-<p>示例：<code>~$ cd Documents</code></p>
-<p>结果：<code>~/Documents$</code></p>
-</li>
-<li><p>返回上一级目录</p>
-<p>示例：<code>~$ cd ..</code></p>
-<p>结果：<code>~$</code></p>
-</li>
-<li><p>返回之前所在目录</p>
-<p>示例：<code>~$ cd -</code></p>
-<p>结果：<code>~/Documents$</code></p>
-</li>
-<li><p>返回上级目录的上级目录</p>
-<p>示例：<code>~$ cd ../..</code></p>
-<p>结果：<code>/home$</code></p>
-</li>
-<li><p>切换到用户目录</p>
-<p>示例：<code>~$ cd ~</code></p>
-<p>结果：<code>~$</code></p>
-</li>
-<li><p>切换到绝对路径对应目录</p>
-<p>示例：<code>~$ cd /home/zl/Documents</code></p>
-<p>结果：<code>~/Documents$</code></p>
-</li>
-</ol>
-</li>
-</ul>
-<hr>
-<h2 id="mkdir指令"><a href="#mkdir指令" class="headerlink" title="mkdir指令"></a>mkdir指令</h2><p>​    <strong>mkdir是make directory的简写，mkdir命令可以创建文件夹。</strong></p>
-<hr>
-<h2 id="rmdir指令"><a href="#rmdir指令" class="headerlink" title="rmdir指令"></a>rmdir指令</h2><p>​    <strong>rmdir是remove directory的简写，rmdir命令可以移除文件夹。</strong></p>
-<p>​    <strong>注意：要移除的文件夹必须是空文件夹，不然会移除失败。</strong></p>
-<hr>
-<h2 id="touch指令"><a href="#touch指令" class="headerlink" title="touch指令"></a>touch指令</h2><p>​    <strong>touch命令可以创建文件。</strong></p>
-<ol>
-<li><p>创建一个文件</p>
-<p><code>~/Documents$ touch file</code></p>
-</li>
-<li><p>创建多个文件</p>
-<p><code>~/Documents$ touch file1 file2 file3</code></p>
-</li>
-</ol>
-<hr>
-<h2 id="rm指令"><a href="#rm指令" class="headerlink" title="rm指令"></a>rm指令</h2><p>​    <strong>rm是remove的简写，rm指令可以移除文件或文件夹。</strong></p>
-<ol>
-<li><p>移除单个文件</p>
-<p><code>rm file</code></p>
-</li>
-<li><p>有提示地移除文件 (为避免误删)</p>
-<p>可带参数：</p>
-<ul>
-<li><code>-i</code> 每个要移除的文件都进行提示</li>
-<li><code>-I</code> 移除文件超过3个文件才进行提示</li>
-</ul>
-</li>
-<li><p>移除文件夹</p>
-<p>使用参数<code>-r</code> 或 <code>-R</code> (recursively) 用来删文件夹。</p>
-<p>和 <code>rmdir</code> 不同，<code>rm -r</code> 可以在文件夹中有文件的情况下删除这个文件夹。</p>
-</li>
-</ol>
-<hr>
-<h2 id="cp指令"><a href="#cp指令" class="headerlink" title="cp指令"></a>cp指令</h2><p>​    **cp是copy的简写，cp命令可以复制文件或文件夹。 **</p>
-<ol>
-<li><p>复制文件</p>
-<p><code>cp file file_copy</code></p>
-<p>注意：如果 file_copy 已经存在，将会直接覆盖已存在的文件。 如果要避免直接覆盖，在cp指令后面加参数<code>-i</code>（interactively）。</p>
-</li>
-<li><p>复制文件夹</p>
-<p><code>cp -R folder/ folder_copy/</code></p>
-<p>注意：复制文件夹，需要加参数<code>-R</code> （recursively）。</p>
-</li>
-</ol>
-<hr>
-<h2 id="mv指令"><a href="#mv指令" class="headerlink" title="mv指令"></a>mv指令</h2><p>​    <strong>mv是move的简写，mv指令可以剪切或重命名文件</strong></p>
-<ol>
-<li><p>剪切文件</p>
-<p><code>mv file folder/</code></p>
-</li>
-<li><p>重命名文件</p>
-<p><code>mv file file_rename</code></p>
-</li>
-</ol>
-<hr>
-<h2 id="nano指令"><a href="#nano指令" class="headerlink" title="nano指令"></a>nano指令</h2><p>​    <strong>nano是linux的一款文字编辑工具。我们做基本的terminal端文本编辑。</strong></p>
-<p>​    <code>nano test.py</code></p>
-<hr>
-<h2 id="cat指令"><a href="#cat指令" class="headerlink" title="cat指令"></a>cat指令</h2><p>​    **cat是concatenate的简写，cat指令可以显示文件内容，或者将某个文件内容写入到其它文件。 **</p>
-<ol>
-<li><p>查看文件内容</p>
-<p><code>cat test.py</code></p>
-</li>
-<li><p>将文件的内容写入另一个文件</p>
-<p><code>cat test.py &gt; test1.py</code></p>
-</li>
-<li><p>将多个文件的内容一起写入另一个文件</p>
-<p><code>cat test.py test1.py &gt; test2.py</code></p>
-</li>
-<li><p>将文件的内容添加到另一个文件的末尾</p>
-<p><code>cat test2.py &gt;&gt; test3.py</code></p>
-</li>
-</ol>
-<hr>
-<h2 id="whereis-指令"><a href="#whereis-指令" class="headerlink" title="whereis 指令"></a>whereis 指令</h2><p>​    <strong>whereis指令可以搜索程序名，并且只搜索二进制文件（参数-b），man说明文件（参数-m）和源代码文件（参数-s）。如果省略参数，则返回所有信息。</strong></p>
-<hr>
-<h2 id="which指令"><a href="#which指令" class="headerlink" title="which指令"></a>which指令</h2><p>​    <strong>which指令可以在PATH变量指定的路径中搜索某个系统命令的位置，并且返回第一个搜索结果。使用which指令可以查看某个系统命令是否存在，以及执行命令的绝对路径。</strong></p>
-<p>​    示例：</p>
-<p>​    <code>which python3</code></p>
-<p>​    结果</p>
-<p>​    <code>/usr/bin/python3</code></p>
-<p>​    <em>补充：（一个使用Python的技巧）</em></p>
-<p>​    如果puthon文件有可执行权限，可以在python文件首行加上#！和python命令的绝对路径，即可在terminal中输入<code>./文件名.py</code>直接执行python文件。</p>
-<p>​    示例：</p>
-<p>test.py</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3  # 告诉电脑执行这个文件用什么加载</span></span><br><span class="line">print(<span class="string">&quot;My test.&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>terminal窗口</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ .&#x2F;test.py</span><br><span class="line">My test.</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="clear指令"><a href="#clear指令" class="headerlink" title="clear指令"></a>clear指令</h2><p>​    <strong>clear命令可以清除当前terminal屏幕内容。</strong></p>
-<hr>
-<h2 id="文件权限"><a href="#文件权限" class="headerlink" title="文件权限"></a>文件权限</h2><h3 id="ls-查看权限"><a href="#ls-查看权限" class="headerlink" title="ls 查看权限"></a>ls 查看权限</h3><p>​    <strong>在 Terminal 中输入<code>ls -l</code>或<code>ll</code>命令即可查看文件的权限</strong></p>
-<p>​    文件权限表示如下图所示：</p>
-<p>​    <img src="/2019/09/29/Linux%E5%9F%BA%E7%A1%80%E6%8C%87%E4%BB%A4/File_permissions_in_Linux.png"></p>
-<ul>
-<li><p><code>Type</code>: 最常见的是 <code>-</code> 为文件，<code>d</code> 为文件夹，其它的还有<code>l</code>, <code>n</code> … </p>
-</li>
-<li><p><code>User</code>: User对应的三个位置表示User身份能对文件做什么处理 </p>
-<p>（<code>r</code> 能读； <code>w</code> 能写； <code>x</code>能执行； <code>-</code> 不能完成某个操作）</p>
-</li>
-<li><p><code>Group</code>: 一个 Group 里可能有一个或多个 user，这些权限的样式和User一样。</p>
-</li>
-<li><p><code>Others</code>: 除了 User 和 Group 的其它人的操作权限，这些权限的样式和User一样。</p>
-</li>
-</ul>
-<h3 id="chmod-修改权限"><a href="#chmod-修改权限" class="headerlink" title="chmod 修改权限"></a>chmod 修改权限</h3><p>​    <strong>chmod是change mode的简写，chmod指令可以修改文件权限。</strong></p>
-<p>​    指令格式：</p>
-<p>​    <code>$ chmod [谁][怎么修改] [哪个文件]</code></p>
-<p>[谁]</p>
-<ul>
-<li><code>u</code>: 对于 User 修改</li>
-<li><code>g</code>: 对于 Group 修改</li>
-<li><code>o</code>: 对于 Others 修改</li>
-<li><code>a</code>: (all) 对于所有人修改</li>
-</ul>
-<p>[怎么修改]</p>
-<ul>
-<li><code>+</code>, <code>-</code>, <code>=</code> 作用形式：加上，减掉，等于某些权限</li>
-<li><code>r</code>, <code>w</code>, <code>x</code> 单个或多个权限一起，比如 <code>r rx</code></li>
-</ul>
-<p>[哪个文件]</p>
-<ul>
-<li>施加操作的文件, 可以为多个</li>
-</ul>
-<p>示例：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">chmod u&#x3D;rwx,g&#x3D;rx,o&#x3D;x 文件目录名</span><br><span class="line">chmod o+w 文件目录名 给其它用户增加写的权限</span><br><span class="line">chmod a-x 文件目录名 给所有人去掉可执行文件的权限</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>基础技术</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
+        <tag>markdown</tag>
       </tags>
   </entry>
   <entry>
@@ -788,7 +788,7 @@
         <category>基础技术</category>
       </categories>
       <tags>
-        <tag>Markdown</tag>
+        <tag>markdown</tag>
         <tag>LaTex</tag>
       </tags>
   </entry>
