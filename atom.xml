@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2020-11-28T10:39:33.743Z</updated>
+  <updated>2020-11-28T11:54:05.708Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CUDA、cudnn安装</title>
+    <link href="http://example.com/2019/11/29/CUDA%E3%80%81cudnn%E5%AE%89%E8%A3%85/"/>
+    <id>http://example.com/2019/11/29/CUDA%E3%80%81cudnn%E5%AE%89%E8%A3%85/</id>
+    <published>2019-11-29T04:12:12.000Z</published>
+    <updated>2020-11-28T11:54:05.708Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;CUDA、cudnn安装&quot;&gt;&lt;a href=&quot;#CUDA、cudnn安装&quot; class=&quot;headerlink&quot; title=&quot;CUDA、cudnn安装&quot;&gt;&lt;/a&gt;CUDA、cudnn安装&lt;/h1&gt;&lt;h2 id=&quot;下载并安装CUDA和补丁包&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="环境搭建" scheme="http://example.com/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    
+    
+    <category term="CUDA" scheme="http://example.com/tags/CUDA/"/>
+    
+    <category term="cudnn" scheme="http://example.com/tags/cudnn/"/>
+    
+  </entry>
   
   <entry>
     <title>Docker(nvidia-docker)使用教程</title>
@@ -42,38 +69,11 @@
   </entry>
   
   <entry>
-    <title>Docker安装ubuntu16.04容器</title>
-    <link href="http://example.com/2019/10/29/Docker%E5%AE%89%E8%A3%85ubuntu16.04%E5%AE%B9%E5%99%A8/"/>
-    <id>http://example.com/2019/10/29/Docker%E5%AE%89%E8%A3%85ubuntu16.04%E5%AE%B9%E5%99%A8/</id>
-    <published>2019-10-29T04:12:12.000Z</published>
-    <updated>2020-11-28T10:50:10.925Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Docker安装Ubuntu16-04容器&quot;&gt;&lt;a href=&quot;#Docker安装Ubuntu16-04容器&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="环境搭建" scheme="http://example.com/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
-    
-    
-    <category term="Docker" scheme="http://example.com/tags/Docker/"/>
-    
-    <category term="Ubuntu" scheme="http://example.com/tags/Ubuntu/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Ubuntu安装Anaconda</title>
     <link href="http://example.com/2019/10/29/Ubuntu%E5%AE%89%E8%A3%85Anaconda/"/>
     <id>http://example.com/2019/10/29/Ubuntu%E5%AE%89%E8%A3%85Anaconda/</id>
     <published>2019-10-29T04:12:12.000Z</published>
-    <updated>2020-11-28T10:43:25.011Z</updated>
+    <updated>2020-11-28T12:08:49.561Z</updated>
     
     
       
@@ -92,6 +92,8 @@
     <category term="Ubuntu" scheme="http://example.com/tags/Ubuntu/"/>
     
     <category term="Anaconda" scheme="http://example.com/tags/Anaconda/"/>
+    
+    <category term="pytorch" scheme="http://example.com/tags/pytorch/"/>
     
   </entry>
   
@@ -142,6 +144,33 @@
     
     
     <category term="GCC" scheme="http://example.com/tags/GCC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Docker安装ubuntu16.04容器</title>
+    <link href="http://example.com/2019/10/29/Docker%E5%AE%89%E8%A3%85ubuntu16.04%E5%AE%B9%E5%99%A8/"/>
+    <id>http://example.com/2019/10/29/Docker%E5%AE%89%E8%A3%85ubuntu16.04%E5%AE%B9%E5%99%A8/</id>
+    <published>2019-10-29T04:12:12.000Z</published>
+    <updated>2020-11-28T10:50:10.925Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Docker安装Ubuntu16-04容器&quot;&gt;&lt;a href=&quot;#Docker安装Ubuntu16-04容器&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="环境搭建" scheme="http://example.com/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    
+    
+    <category term="Docker" scheme="http://example.com/tags/Docker/"/>
+    
+    <category term="Ubuntu" scheme="http://example.com/tags/Ubuntu/"/>
     
   </entry>
   

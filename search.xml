@@ -1,6 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>CUDA、cudnn安装</title>
+    <url>/2019/11/29/CUDA%E3%80%81cudnn%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<h1 id="CUDA、cudnn安装"><a href="#CUDA、cudnn安装" class="headerlink" title="CUDA、cudnn安装"></a>CUDA、cudnn安装</h1><h2 id="下载并安装CUDA和补丁包"><a href="#下载并安装CUDA和补丁包" class="headerlink" title="下载并安装CUDA和补丁包"></a>下载并安装CUDA和补丁包</h2><ol>
+<li><p>下载地址：<a href="https://developer.nvidia.com/cuda-90-download-archive?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1604&target_type=runfilelocal" title="下载地址">https://developer.nvidia.com/cuda-90-download-archive?target_os=Linux&amp;target_arch=x86_64&amp;target_distro=Ubuntu&amp;target_version=1604&amp;target_type=runfilelocal</a></p>
+</li>
+<li><p>sh执行安装（注意：不安装显卡驱动）<br><code>sudo sh cuda_xxx_linux.run</code></p>
+</li>
+<li><p>修改环境变量（修改～/.bashrc文件）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> CUDA_HOME=/usr/<span class="built_in">local</span>/cuda</span><br><span class="line"><span class="built_in">export</span> PATH=/usr/<span class="built_in">local</span>/cuda/bin<span class="variable">$&#123;PATH:+:<span class="variable">$&#123;PATH&#125;</span>&#125;</span></span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=/usr/<span class="built_in">local</span>/cuda/lib64<span class="variable">$&#123;LD_LIBRARY_PATH:+:<span class="variable">$&#123;LD_LIBRARY_PATH&#125;</span>&#125;</span></span><br></pre></td></tr></table></figure>
+<p>执行source ~/.bashrc生效</p>
+</li>
+<li><p>检查当前的cuda版本<br><code>nvcc -V</code></p>
+</li>
+</ol>
+<h2 id="下载并安装cudnn"><a href="#下载并安装cudnn" class="headerlink" title="下载并安装cudnn"></a>下载并安装cudnn</h2><ol>
+<li><p>下载地址：<a href="https://developer.nvidia.com/rdp/cudnn-archive" title="下载地址">https://developer.nvidia.com/rdp/cudnn-archive</a></p>
+</li>
+<li><p>解压cudnn压缩文件<br><code>tar -xzvf cudnn-9.0-linux-x64-v7.tgz</code></p>
+</li>
+<li><p>安装（拷贝头文件和库文件并给予权限）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cp cuda/include/cudnn.h /usr/<span class="built_in">local</span>/cuda/include</span><br><span class="line">cp cuda/lib64/libcudnn* /usr/<span class="built_in">local</span>/cuda/lib64</span><br><span class="line">chmod a+r /usr/<span class="built_in">local</span>/cuda/include/cudnn.h /usr/<span class="built_in">local</span>/cuda/lib64/libcudnn*</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看当前cudnn的版本<br><code>cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2</code></p>
+</li>
+</ol>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><ol>
+<li><p>切换到cuda/samples文件夹<br><code>cd /usr/local/cuda/samples/1_Utilities/deviceQuery/</code></p>
+</li>
+<li><p>编译<br><code>make</code></p>
+</li>
+<li><p>执行<br><code>./deviceQuery</code></p>
+</li>
+<li><p>验证<br><code>Result = PASS</code> 即成功</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>CUDA</tag>
+        <tag>cudnn</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Docker(nvidia-docker)使用教程</title>
     <url>/2019/10/29/Docker(nvidia-docker)%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</url>
     <content><![CDATA[<h1 id="Docker-nvidia-docker-使用教程"><a href="#Docker-nvidia-docker-使用教程" class="headerlink" title="Docker(nvidia-docker)使用教程"></a>Docker(nvidia-docker)使用教程</h1><h2 id="Docker国内镜像源"><a href="#Docker国内镜像源" class="headerlink" title="Docker国内镜像源"></a>Docker国内镜像源</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;registry-mirrors&quot;</span>: [</span><br><span class="line">    <span class="string">&quot;https://registry.docker-cn.com&quot;</span>,</span><br><span class="line">    <span class="string">&quot;https://hub-mirror.c.163.com&quot;</span>,</span><br><span class="line">    <span class="string">&quot;https://docker.mirrors.ustc.edu.cn&quot;</span></span><br><span class="line">  ],</span><br></pre></td></tr></table></figure>
@@ -49,44 +94,6 @@
       </categories>
       <tags>
         <tag>Docker</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Docker安装ubuntu16.04容器</title>
-    <url>/2019/10/29/Docker%E5%AE%89%E8%A3%85ubuntu16.04%E5%AE%B9%E5%99%A8/</url>
-    <content><![CDATA[<h1 id="Docker安装Ubuntu16-04容器"><a href="#Docker安装Ubuntu16-04容器" class="headerlink" title="Docker安装Ubuntu16.04容器"></a>Docker安装Ubuntu16.04容器</h1><h2 id="Docker安装Ubuntu16-04"><a href="#Docker安装Ubuntu16-04" class="headerlink" title="Docker安装Ubuntu16.04"></a>Docker安装Ubuntu16.04</h2><p><code>docker pull ubuntu:16.04</code></p>
-<h2 id="运行Ubuntu容器"><a href="#运行Ubuntu容器" class="headerlink" title="运行Ubuntu容器"></a>运行Ubuntu容器</h2><p><code>docker run -itd --name ubuntu ubuntu:16.04</code></p>
-<h2 id="进入Ubuntu容器"><a href="#进入Ubuntu容器" class="headerlink" title="进入Ubuntu容器"></a>进入Ubuntu容器</h2><p><code>docker exec -it ubuntu bash</code></p>
-<h3 id="更新软件源"><a href="#更新软件源" class="headerlink" title="更新软件源"></a>更新软件源</h3><h4 id="修改-etc-apt-sources-list文件"><a href="#修改-etc-apt-sources-list文件" class="headerlink" title="修改/etc/apt/sources.list文件"></a>修改/etc/apt/sources.list文件</h4><blockquote>
-<p>echo “”&gt;/etc/apt/sources.list<br>echo “deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-security main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-updates main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-proposed main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-backports main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-security main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-updates main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-proposed main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-backports main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list</p>
-</blockquote>
-<h4 id="然后更新"><a href="#然后更新" class="headerlink" title="然后更新"></a>然后更新</h4><blockquote>
-<p>apt-get update</p>
-</blockquote>
-<h3 id="查看ubuntu安装的扩展包"><a href="#查看ubuntu安装的扩展包" class="headerlink" title="查看ubuntu安装的扩展包"></a>查看ubuntu安装的扩展包</h3><p><code>dpkg --get-selections</code></p>
-<h3 id="安装vim"><a href="#安装vim" class="headerlink" title="安装vim"></a>安装vim</h3><p><code>apt-get install vim</code></p>
-<h3 id="安装基础网络命令：ping、ifconfig和wget"><a href="#安装基础网络命令：ping、ifconfig和wget" class="headerlink" title="安装基础网络命令：ping、ifconfig和wget"></a>安装基础网络命令：ping、ifconfig和wget</h3><blockquote>
-<p>apt-get install net-tools        # ifconfig<br>apt-get install iputils-ping        # ping<br>apt-get install wget            #wget</p>
-</blockquote>
-<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><h3 id="阿里源"><a href="#阿里源" class="headerlink" title="阿里源"></a>阿里源</h3><blockquote>
-<p>deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic main restricted universe multiverse<br>deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-security main restricted universe multiverse<br>deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-updates main restricted universe multiverse<br>deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-proposed main restricted universe multiverse<br>deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-backports main restricted universe multiverse<br>deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic main restricted universe multiverse<br>deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-security main restricted universe multiverse<br>deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-updates main restricted universe multiverse<br>deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-proposed main restricted universe multiverse<br>deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-backports main restricted universe multiverse</p>
-</blockquote>
-<h3 id="中科大源"><a href="#中科大源" class="headerlink" title="中科大源"></a>中科大源</h3><blockquote>
-<p>deb <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic main restricted universe multiverse<br>deb-src <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic main restricted universe multiverse<br>deb <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic-updates main restricted universe multiverse<br>deb-src <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic-updates main restricted universe multiverse<br>deb <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic-backports main restricted universe multiverse<br>deb-src <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic-backports main restricted universe multiverse<br>deb <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic-security main restricted universe multiverse<br>deb-src <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic-security main restricted universe multiverse<br>deb <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic-proposed main restricted universe multiverse<br>deb-src <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic-proposed main restricted universe multiverse</p>
-</blockquote>
-<h3 id="163源"><a href="#163源" class="headerlink" title="163源"></a>163源</h3><blockquote>
-<p>deb <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic main restricted universe multiverse<br>deb <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic-security main restricted universe multiverse<br>deb <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic-updates main restricted universe multiverse<br>deb <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic-proposed main restricted universe multiverse<br>deb <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic-backports main restricted universe multiverse<br>deb-src <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic main restricted universe multiverse<br>deb-src <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic-security main restricted universe multiverse<br>deb-src <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic-updates main restricted universe multiverse<br>deb-src <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic-proposed main restricted universe multiverse<br>deb-src <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic-backports main restricted universe multiverse</p>
-</blockquote>
-<h3 id="清华源"><a href="#清华源" class="headerlink" title="清华源"></a>清华源</h3><blockquote>
-<p>deb <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic main restricted universe multiverse<br>deb-src <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic main restricted universe multiverse<br>deb <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic-updates main restricted universe multiverse<br>deb-src <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic-updates main restricted universe multiverse<br>deb <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic-backports main restricted universe multiverse<br>deb-src <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic-backports main restricted universe multiverse<br>deb <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic-security main restricted universe multiverse<br>deb-src <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic-security main restricted universe multiverse<br>deb <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic-proposed main restricted universe multiverse<br>deb-src <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic-proposed main restricted universe multiverse</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>环境搭建</category>
-      </categories>
-      <tags>
-        <tag>Docker</tag>
-        <tag>Ubuntu</tag>
       </tags>
   </entry>
   <entry>
@@ -514,6 +521,59 @@
       </tags>
   </entry>
   <entry>
+    <title>Ubuntu安装Anaconda</title>
+    <url>/2019/10/29/Ubuntu%E5%AE%89%E8%A3%85Anaconda/</url>
+    <content><![CDATA[<h1 id="Ubuntu安装Anaconda"><a href="#Ubuntu安装Anaconda" class="headerlink" title="Ubuntu安装Anaconda"></a>Ubuntu安装Anaconda</h1><h2 id="获取Anaconda安装文件"><a href="#获取Anaconda安装文件" class="headerlink" title="获取Anaconda安装文件"></a>获取Anaconda安装文件</h2><p><code>wget https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-2020.02-Linux-x86_64.sh</code></p>
+<h2 id="安装Anaconda"><a href="#安装Anaconda" class="headerlink" title="安装Anaconda"></a>安装Anaconda</h2><p><code>bash Anaconda3-2020.02-Linux-x86_64.sh</code></p>
+<h2 id="查看conda版本"><a href="#查看conda版本" class="headerlink" title="查看conda版本"></a>查看conda版本</h2><p><code>conda -V</code></p>
+<h2 id="查看conda扩展包"><a href="#查看conda扩展包" class="headerlink" title="查看conda扩展包"></a>查看conda扩展包</h2><p><code>conda list</code></p>
+<h2 id="修改镜像源"><a href="#修改镜像源" class="headerlink" title="修改镜像源"></a>修改镜像源</h2><ol>
+<li><p>生成～/.condarc文件<br><code>conda config --set show_channel_urls yes</code></p>
+</li>
+<li><p>修改生成～/.condarc文件（vim ～/.condarc）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">channels:</span><br><span class="line">  - defaults</span><br><span class="line">show_channel_urls: <span class="literal">true</span></span><br><span class="line">channel_alias: https://mirrors.bfsu.edu.cn/anaconda</span><br><span class="line">default_channels:</span><br><span class="line">  - https://mirrors.bfsu.edu.cn/anaconda/pkgs/main</span><br><span class="line">  - https://mirrors.bfsu.edu.cn/anaconda/pkgs/free</span><br><span class="line">  - https://mirrors.bfsu.edu.cn/anaconda/pkgs/r</span><br><span class="line">  - https://mirrors.bfsu.edu.cn/anaconda/pkgs/pro</span><br><span class="line">  - https://mirrors.bfsu.edu.cn/anaconda/pkgs/msys2</span><br><span class="line">custom_channels:</span><br><span class="line">  conda-forge: https://mirrors.bfsu.edu.cn/anaconda/cloud</span><br><span class="line">  msys2: https://mirrors.bfsu.edu.cn/anaconda/cloud</span><br><span class="line">  bioconda: https://mirrors.bfsu.edu.cn/anaconda/cloud</span><br><span class="line">  menpo: https://mirrors.bfsu.edu.cn/anaconda/cloud</span><br><span class="line">  pytorch: https://mirrors.bfsu.edu.cn/anaconda/cloud</span><br><span class="line">  simpleitk: https://mirrors.bfsu.edu.cn/anaconda/cloud</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<ol start="3">
+<li><p>清除索引缓存<br><code>conda clean -i</code></p>
+</li>
+<li><p>临时使用pypi镜像源<br><code>pip install -i https://mirrors.bfsu.edu.cn/pypi/web/simple packages</code></p>
+</li>
+</ol>
+<h2 id="创建虚拟环境"><a href="#创建虚拟环境" class="headerlink" title="创建虚拟环境"></a>创建虚拟环境</h2><blockquote>
+<p>conda create –name 虚拟环境名 –clone 克隆环境<br>也可直接指定python版本<br>conda create –name 虚拟环境名 python=版本号</p>
+</blockquote>
+<h2 id="查看虚拟环境列表"><a href="#查看虚拟环境列表" class="headerlink" title="查看虚拟环境列表"></a>查看虚拟环境列表</h2><p><code>conda env list</code></p>
+<h2 id="激活虚拟环境"><a href="#激活虚拟环境" class="headerlink" title="激活虚拟环境"></a>激活虚拟环境</h2><p><code>conda activate 虚拟环境名</code></p>
+<h2 id="取消虚拟环境激活"><a href="#取消虚拟环境激活" class="headerlink" title="取消虚拟环境激活"></a>取消虚拟环境激活</h2><p><code>conda deactivate</code></p>
+<h2 id="删除虚拟环境"><a href="#删除虚拟环境" class="headerlink" title="删除虚拟环境"></a>删除虚拟环境</h2><p><code>conda remove --name 虚拟环境名 --all</code></p>
+<h2 id="虚拟环境安装实例"><a href="#虚拟环境安装实例" class="headerlink" title="虚拟环境安装实例"></a>虚拟环境安装实例</h2><ol>
+<li><p>创建python3.6的anaconda虚拟环境（命名为pytorch）<br><code>conda create -n pytorch python=3.6</code> </p>
+</li>
+<li><p>激活pytorch虚拟环境<br><code>conda activate pytorch0.4.0</code></p>
+</li>
+<li><p>安装pytorch、torchvision<br><code>conda install pytorch torchvision torchaudio cudatoolkit=9.2 -c pytorch</code></p>
+</li>
+<li><p>安装实验需要的软件包<br><code>pip install -i https://mirrors.bfsu.edu.cn/pypi/web/simple -r requirements.txt</code></p>
+</li>
+<li><p>测试pytorch是否支持GPU</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python</span><br><span class="line">import torch</span><br><span class="line">torch.version.cuda</span><br><span class="line">torch.cuda.is_available()</span><br></pre></td></tr></table></figure>
+<p>返回True即成功</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>Anaconda</tag>
+        <tag>pytorch</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/1997/12/30/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -530,31 +590,6 @@
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>Ubuntu安装Anaconda</title>
-    <url>/2019/10/29/Ubuntu%E5%AE%89%E8%A3%85Anaconda/</url>
-    <content><![CDATA[<h1 id="Ubuntu安装Anaconda"><a href="#Ubuntu安装Anaconda" class="headerlink" title="Ubuntu安装Anaconda"></a>Ubuntu安装Anaconda</h1><h2 id="获取Anaconda安装文件"><a href="#获取Anaconda安装文件" class="headerlink" title="获取Anaconda安装文件"></a>获取Anaconda安装文件</h2><blockquote>
-<p>wget <a href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-2020.02-Linux-x86_64.sh">https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-2020.02-Linux-x86_64.sh</a></p>
-</blockquote>
-<h2 id="安装Anaconda"><a href="#安装Anaconda" class="headerlink" title="安装Anaconda"></a>安装Anaconda</h2><p><code>bash Anaconda3-2020.02-Linux-x86_64.sh</code></p>
-<h2 id="查看conda版本"><a href="#查看conda版本" class="headerlink" title="查看conda版本"></a>查看conda版本</h2><p><code>conda -V</code></p>
-<h2 id="查看conda扩展包"><a href="#查看conda扩展包" class="headerlink" title="查看conda扩展包"></a>查看conda扩展包</h2><p><code>conda list</code></p>
-<h2 id="创建虚拟环境"><a href="#创建虚拟环境" class="headerlink" title="创建虚拟环境"></a>创建虚拟环境</h2><blockquote>
-<p>conda create –name 虚拟环境名 –clone 克隆环境<br>也可直接指定python版本<br>conda create –name 虚拟环境名 python=版本号</p>
-</blockquote>
-<h2 id="查看虚拟环境列表"><a href="#查看虚拟环境列表" class="headerlink" title="查看虚拟环境列表"></a>查看虚拟环境列表</h2><p><code>conda env list</code></p>
-<h2 id="激活虚拟环境"><a href="#激活虚拟环境" class="headerlink" title="激活虚拟环境"></a>激活虚拟环境</h2><p><code>conda activate 虚拟环境名</code></p>
-<h2 id="取消虚拟环境激活"><a href="#取消虚拟环境激活" class="headerlink" title="取消虚拟环境激活"></a>取消虚拟环境激活</h2><p><code>conda deactivate</code></p>
-<h2 id="删除虚拟环境"><a href="#删除虚拟环境" class="headerlink" title="删除虚拟环境"></a>删除虚拟环境</h2><p><code>conda remove --name 虚拟环境名 --all</code></p>
-]]></content>
-      <categories>
-        <category>环境搭建</category>
-      </categories>
-      <tags>
-        <tag>Ubuntu</tag>
-        <tag>Anaconda</tag>
-      </tags>
   </entry>
   <entry>
     <title>编译安装FFmpeg</title>
@@ -625,6 +660,44 @@
       </categories>
       <tags>
         <tag>GCC</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Docker安装ubuntu16.04容器</title>
+    <url>/2019/10/29/Docker%E5%AE%89%E8%A3%85ubuntu16.04%E5%AE%B9%E5%99%A8/</url>
+    <content><![CDATA[<h1 id="Docker安装Ubuntu16-04容器"><a href="#Docker安装Ubuntu16-04容器" class="headerlink" title="Docker安装Ubuntu16.04容器"></a>Docker安装Ubuntu16.04容器</h1><h2 id="Docker安装Ubuntu16-04"><a href="#Docker安装Ubuntu16-04" class="headerlink" title="Docker安装Ubuntu16.04"></a>Docker安装Ubuntu16.04</h2><p><code>docker pull ubuntu:16.04</code></p>
+<h2 id="运行Ubuntu容器"><a href="#运行Ubuntu容器" class="headerlink" title="运行Ubuntu容器"></a>运行Ubuntu容器</h2><p><code>docker run -itd --name ubuntu ubuntu:16.04</code></p>
+<h2 id="进入Ubuntu容器"><a href="#进入Ubuntu容器" class="headerlink" title="进入Ubuntu容器"></a>进入Ubuntu容器</h2><p><code>docker exec -it ubuntu bash</code></p>
+<h3 id="更新软件源"><a href="#更新软件源" class="headerlink" title="更新软件源"></a>更新软件源</h3><h4 id="修改-etc-apt-sources-list文件"><a href="#修改-etc-apt-sources-list文件" class="headerlink" title="修改/etc/apt/sources.list文件"></a>修改/etc/apt/sources.list文件</h4><blockquote>
+<p>echo “”&gt;/etc/apt/sources.list<br>echo “deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-security main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-updates main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-proposed main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-backports main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-security main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-updates main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-proposed main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-backports main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list</p>
+</blockquote>
+<h4 id="然后更新"><a href="#然后更新" class="headerlink" title="然后更新"></a>然后更新</h4><blockquote>
+<p>apt-get update</p>
+</blockquote>
+<h3 id="查看ubuntu安装的扩展包"><a href="#查看ubuntu安装的扩展包" class="headerlink" title="查看ubuntu安装的扩展包"></a>查看ubuntu安装的扩展包</h3><p><code>dpkg --get-selections</code></p>
+<h3 id="安装vim"><a href="#安装vim" class="headerlink" title="安装vim"></a>安装vim</h3><p><code>apt-get install vim</code></p>
+<h3 id="安装基础网络命令：ping、ifconfig和wget"><a href="#安装基础网络命令：ping、ifconfig和wget" class="headerlink" title="安装基础网络命令：ping、ifconfig和wget"></a>安装基础网络命令：ping、ifconfig和wget</h3><blockquote>
+<p>apt-get install net-tools        # ifconfig<br>apt-get install iputils-ping        # ping<br>apt-get install wget            #wget</p>
+</blockquote>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><h3 id="阿里源"><a href="#阿里源" class="headerlink" title="阿里源"></a>阿里源</h3><blockquote>
+<p>deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic main restricted universe multiverse<br>deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-security main restricted universe multiverse<br>deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-updates main restricted universe multiverse<br>deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-proposed main restricted universe multiverse<br>deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-backports main restricted universe multiverse<br>deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic main restricted universe multiverse<br>deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-security main restricted universe multiverse<br>deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-updates main restricted universe multiverse<br>deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-proposed main restricted universe multiverse<br>deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-backports main restricted universe multiverse</p>
+</blockquote>
+<h3 id="中科大源"><a href="#中科大源" class="headerlink" title="中科大源"></a>中科大源</h3><blockquote>
+<p>deb <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic main restricted universe multiverse<br>deb-src <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic main restricted universe multiverse<br>deb <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic-updates main restricted universe multiverse<br>deb-src <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic-updates main restricted universe multiverse<br>deb <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic-backports main restricted universe multiverse<br>deb-src <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic-backports main restricted universe multiverse<br>deb <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic-security main restricted universe multiverse<br>deb-src <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic-security main restricted universe multiverse<br>deb <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic-proposed main restricted universe multiverse<br>deb-src <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic-proposed main restricted universe multiverse</p>
+</blockquote>
+<h3 id="163源"><a href="#163源" class="headerlink" title="163源"></a>163源</h3><blockquote>
+<p>deb <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic main restricted universe multiverse<br>deb <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic-security main restricted universe multiverse<br>deb <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic-updates main restricted universe multiverse<br>deb <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic-proposed main restricted universe multiverse<br>deb <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic-backports main restricted universe multiverse<br>deb-src <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic main restricted universe multiverse<br>deb-src <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic-security main restricted universe multiverse<br>deb-src <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic-updates main restricted universe multiverse<br>deb-src <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic-proposed main restricted universe multiverse<br>deb-src <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic-backports main restricted universe multiverse</p>
+</blockquote>
+<h3 id="清华源"><a href="#清华源" class="headerlink" title="清华源"></a>清华源</h3><blockquote>
+<p>deb <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic main restricted universe multiverse<br>deb-src <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic main restricted universe multiverse<br>deb <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic-updates main restricted universe multiverse<br>deb-src <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic-updates main restricted universe multiverse<br>deb <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic-backports main restricted universe multiverse<br>deb-src <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic-backports main restricted universe multiverse<br>deb <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic-security main restricted universe multiverse<br>deb-src <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic-security main restricted universe multiverse<br>deb <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic-proposed main restricted universe multiverse<br>deb-src <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic-proposed main restricted universe multiverse</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>Docker</tag>
+        <tag>Ubuntu</tag>
       </tags>
   </entry>
   <entry>
