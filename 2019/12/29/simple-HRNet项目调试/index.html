@@ -9,7 +9,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    非root用户源码编译安装GCC |  ZLambert
+    simple-HRNet项目调试 |  ZLambert
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -45,7 +45,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-非root用户源码编译安装GCC"
+  id="post-simple-HRNet项目调试"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -56,18 +56,18 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  非root用户源码编译安装GCC
+  simple-HRNet项目调试
 </h1>
  
 
     </header>
      
     <div class="article-meta">
-      <a href="/2019/10/29/%E9%9D%9Eroot%E7%94%A8%E6%88%B7%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85GCC/" class="article-date">
-  <time datetime="2019-10-29T04:12:12.000Z" itemprop="datePublished">2019-10-29</time>
+      <a href="/2019/12/29/simple-HRNet%E9%A1%B9%E7%9B%AE%E8%B0%83%E8%AF%95/" class="article-date">
+  <time datetime="2019-12-29T04:12:12.000Z" itemprop="datePublished">2019-12-29</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a>
+    <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE%E8%B0%83%E8%AF%95/">项目调试</a>
   </div>
   
 <div class="word_count">
@@ -75,7 +75,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">245</span>
+            <span class="post-count">335</span>
         </span>
     </span>
 
@@ -99,26 +99,46 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="非root用户源码编译安装GCC"><a href="#非root用户源码编译安装GCC" class="headerlink" title="非root用户源码编译安装GCC"></a>非root用户源码编译安装GCC</h1><h2 id="下载指定版本的GCC-source-code并解压"><a href="#下载指定版本的GCC-source-code并解压" class="headerlink" title="下载指定版本的GCC source code并解压"></a>下载指定版本的GCC source code并解压</h2><p>我选择的是gcc-6.5.0 <code>https://ftp.gnu.org/gnu/gcc/gcc-6.5.0/gcc-6.5.0.tar.gz</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf gcc-6.5.0.tar.gz</span><br></pre></td></tr></table></figure>
+  <h1 id="simple-HRNet项目调试"><a href="#simple-HRNet项目调试" class="headerlink" title="simple-HRNet项目调试"></a>simple-HRNet项目调试</h1><h2 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h2><p><a target="_blank" rel="noopener" href="https://github.com/stefanopini/simple-HRNet" title="项目地址">https://github.com/stefanopini/simple-HRNet</a></p>
+<h2 id="根据README-md创建虚拟环境"><a href="#根据README-md创建虚拟环境" class="headerlink" title="根据README.md创建虚拟环境"></a>根据README.md创建虚拟环境</h2><ol>
+<li><p>克隆项目并进入项目文件夹</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/stefanopini/simple-HRNet.git</span><br><span class="line"><span class="built_in">cd</span> simple-HRNet/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建python3.6的anaconda虚拟环境（命名为simple-HRNet）<br><code>conda create -n simple-HRNet python=3.6</code></p>
+</li>
+<li><p>激活simple-HRNet虚拟环境<br><code>conda activate simple-HRNet</code></p>
+</li>
+<li><p>安装实验需要的软件包<br><code>pip install -i https://mirrors.bfsu.edu.cn/pypi/web/simple -r requirements.txt</code></p>
+</li>
+</ol>
+<h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><ol>
+<li><p>下载预训练权重至weights文件夹下</p>
+</li>
+<li><p>设置目标检测器</p>
+</li>
+</ol>
+<ul>
+<li>（1）克隆YOLOv3至<code>./models/detectors</code>文件夹下，将<code>PyTorch-YOLOv3</code>文件夹名改为<code>yolo</code></li>
+<li>（2）进入<code>./models/detectors/yolo</code>文件夹，安装YOLOv3需要的软件包<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ./models/detectors/yolo</span><br><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></table></figure></li>
+<li>（3）创建自定义模型（生成yolov3-custom.cfg）<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> config</span><br><span class="line">bash create_custom_model.sh &lt;num-classes&gt; <span class="comment"># num-classes目标检测类别数</span></span><br></pre></td></tr></table></figure></li>
+<li>（4）设置类别名称<br><code>vim data/custom/classes.names</code>每个类别占一行</li>
+<li>（5）将训练好的YOLOv3模型放至<code>checkpoints</code>文件夹下</li>
+</ul>
+<ol start="3">
+<li><p>准备HRNet数据集<br>将制作好的数据集放至<code>./datasets/COCO</code>文件夹下，包含annotations、train2017、val2017三个文件夹，数据集格式与MSCOCO相同</p>
+</li>
+<li><p>编译nms模块</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> misc</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
 
-<h2 id="进入解压后的文件，执行以下命令下载gcc依赖包"><a href="#进入解压后的文件，执行以下命令下载gcc依赖包" class="headerlink" title="进入解压后的文件，执行以下命令下载gcc依赖包"></a>进入解压后的文件，执行以下命令下载gcc依赖包</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./contrib/download_prerequistites</span><br></pre></td></tr></table></figure>
-
-<h2 id="查看软链接是否建立成功-即ln-sf对应的文件是否存在"><a href="#查看软链接是否建立成功-即ln-sf对应的文件是否存在" class="headerlink" title="查看软链接是否建立成功(即ln -sf对应的文件是否存在)"></a>查看软链接是否建立成功(即ln -sf对应的文件是否存在)</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat contrib/download_prerequisites</span><br></pre></td></tr></table></figure>
-
-<h2 id="编译GCC"><a href="#编译GCC" class="headerlink" title="编译GCC"></a>编译GCC</h2><p>（用系统的GCC编译自己的GCC，其中<code>/path/to/install/gcc-6.5.0</code>是gcc安装的目录 ）</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir build_dir</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> build_dir</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">../configure --disable-checking --enable-languages=c,c++ --disable-multilib --prefix=/path/to/install/gcc-6.5.0 --enable-threads=posix</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make -j64   <span class="comment"># 多线程编译</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make install</span><br></pre></td></tr></table></figure>
-
-<h2 id="为当前用户配置环境变量"><a href="#为当前用户配置环境变量" class="headerlink" title="为当前用户配置环境变量"></a>为当前用户配置环境变量</h2><h3 id="切换当前用户的目录，运行以下命令"><a href="#切换当前用户的目录，运行以下命令" class="headerlink" title="切换当前用户的目录，运行以下命令"></a>切换当前用户的目录，运行以下命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi ~/.bashrc</span><br></pre></td></tr></table></figure>
-
-<h3 id="在-bashrc末尾加入下面的代码"><a href="#在-bashrc末尾加入下面的代码" class="headerlink" title="在.bashrc末尾加入下面的代码"></a>在.bashrc末尾加入下面的代码</h3><p><code>export PATH=/path/to/install/gcc-6.5.0/bin:/path/to/install/gcc-6.5.0/lib64:$PATH</code><br><code>export LD_LIBRARY_PATH=/path/to/install/gcc-6.5.0/lib/:$LD_LIBRARY_PATH</code></p>
-<h2 id="激活环境变量"><a href="#激活环境变量" class="headerlink" title="激活环境变量"></a>激活环境变量</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
-
-<h2 id="测试gcc版本"><a href="#测试gcc版本" class="headerlink" title="测试gcc版本"></a>测试gcc版本</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -v</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h2><p><code>CUDA_VISIBLE_DEVICES=0 python scripts/train_coco.py --pretrained_weight_path weights/pose_hrnet_w48_384x288.pth --exp_name train --epochs 2000</code></p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><ul>
+<li><p>单人图像测试<br><code>CUDA_VISIBLE_DEVICES=0 python scripts/image-demo.py --single_person</code></p>
+</li>
+<li><p>多人视频测试<br><code>CUDA_VISIBLE_DEVICES=0 python scripts/live-demo.py --filename test.mp4 --save_video</code></p>
+</li>
+</ul>
  
       <!-- reward -->
       
@@ -171,12 +191,12 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2019/10/29/%E9%9D%9Eroot%E7%94%A8%E6%88%B7%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85GCC/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2019/12/29/simple-HRNet%E9%A1%B9%E7%9B%AE%E8%B0%83%E8%AF%95/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GCC/" rel="tag">GCC</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HRNet/" rel="tag">HRNet</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/YOLOv3/" rel="tag">YOLOv3</a></li></ul>
 
     </footer>
   </div>
@@ -184,19 +204,19 @@
    
   <nav class="article-nav">
     
-      <a href="/2019/10/29/%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85FFmpeg/" class="article-nav-link">
+      <a href="/2019/12/29/YOLOv3%E9%A1%B9%E7%9B%AE%E8%B0%83%E8%AF%95/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            编译安装FFmpeg
+            YOLOv3项目调试
           
         </div>
       </a>
     
     
-      <a href="/2019/09/29/Linux%E5%9F%BA%E7%A1%80%E6%8C%87%E4%BB%A4/" class="article-nav-link">
+      <a href="/2019/11/29/CUDA%E3%80%81cudnn%E5%AE%89%E8%A3%85/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">Linux基础指令</div>
+        <div class="article-nav-title">CUDA、cudnn安装</div>
       </a>
     
   </nav>

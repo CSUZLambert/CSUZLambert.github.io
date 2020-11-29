@@ -97,6 +97,157 @@
       </tags>
   </entry>
   <entry>
+    <title>Docker安装ubuntu16.04容器</title>
+    <url>/2019/10/29/Docker%E5%AE%89%E8%A3%85ubuntu16.04%E5%AE%B9%E5%99%A8/</url>
+    <content><![CDATA[<h1 id="Docker安装Ubuntu16-04容器"><a href="#Docker安装Ubuntu16-04容器" class="headerlink" title="Docker安装Ubuntu16.04容器"></a>Docker安装Ubuntu16.04容器</h1><h2 id="Docker安装Ubuntu16-04"><a href="#Docker安装Ubuntu16-04" class="headerlink" title="Docker安装Ubuntu16.04"></a>Docker安装Ubuntu16.04</h2><p><code>docker pull ubuntu:16.04</code></p>
+<h2 id="运行Ubuntu容器"><a href="#运行Ubuntu容器" class="headerlink" title="运行Ubuntu容器"></a>运行Ubuntu容器</h2><p><code>docker run -itd --name ubuntu ubuntu:16.04</code></p>
+<h2 id="进入Ubuntu容器"><a href="#进入Ubuntu容器" class="headerlink" title="进入Ubuntu容器"></a>进入Ubuntu容器</h2><p><code>docker exec -it ubuntu bash</code></p>
+<h3 id="更新软件源"><a href="#更新软件源" class="headerlink" title="更新软件源"></a>更新软件源</h3><h4 id="修改-etc-apt-sources-list文件"><a href="#修改-etc-apt-sources-list文件" class="headerlink" title="修改/etc/apt/sources.list文件"></a>修改/etc/apt/sources.list文件</h4><blockquote>
+<p>echo “”&gt;/etc/apt/sources.list<br>echo “deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-security main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-updates main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-proposed main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-backports main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-security main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-updates main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-proposed main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-backports main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list</p>
+</blockquote>
+<h4 id="然后更新"><a href="#然后更新" class="headerlink" title="然后更新"></a>然后更新</h4><blockquote>
+<p>apt-get update</p>
+</blockquote>
+<h3 id="查看ubuntu安装的扩展包"><a href="#查看ubuntu安装的扩展包" class="headerlink" title="查看ubuntu安装的扩展包"></a>查看ubuntu安装的扩展包</h3><p><code>dpkg --get-selections</code></p>
+<h3 id="安装vim"><a href="#安装vim" class="headerlink" title="安装vim"></a>安装vim</h3><p><code>apt-get install vim</code></p>
+<h3 id="安装基础网络命令：ping、ifconfig和wget"><a href="#安装基础网络命令：ping、ifconfig和wget" class="headerlink" title="安装基础网络命令：ping、ifconfig和wget"></a>安装基础网络命令：ping、ifconfig和wget</h3><blockquote>
+<p>apt-get install net-tools        # ifconfig<br>apt-get install iputils-ping        # ping<br>apt-get install wget            #wget</p>
+</blockquote>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><h3 id="阿里源"><a href="#阿里源" class="headerlink" title="阿里源"></a>阿里源</h3><blockquote>
+<p>deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic main restricted universe multiverse<br>deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-security main restricted universe multiverse<br>deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-updates main restricted universe multiverse<br>deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-proposed main restricted universe multiverse<br>deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-backports main restricted universe multiverse<br>deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic main restricted universe multiverse<br>deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-security main restricted universe multiverse<br>deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-updates main restricted universe multiverse<br>deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-proposed main restricted universe multiverse<br>deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-backports main restricted universe multiverse</p>
+</blockquote>
+<h3 id="中科大源"><a href="#中科大源" class="headerlink" title="中科大源"></a>中科大源</h3><blockquote>
+<p>deb <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic main restricted universe multiverse<br>deb-src <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic main restricted universe multiverse<br>deb <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic-updates main restricted universe multiverse<br>deb-src <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic-updates main restricted universe multiverse<br>deb <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic-backports main restricted universe multiverse<br>deb-src <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic-backports main restricted universe multiverse<br>deb <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic-security main restricted universe multiverse<br>deb-src <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic-security main restricted universe multiverse<br>deb <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic-proposed main restricted universe multiverse<br>deb-src <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic-proposed main restricted universe multiverse</p>
+</blockquote>
+<h3 id="163源"><a href="#163源" class="headerlink" title="163源"></a>163源</h3><blockquote>
+<p>deb <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic main restricted universe multiverse<br>deb <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic-security main restricted universe multiverse<br>deb <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic-updates main restricted universe multiverse<br>deb <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic-proposed main restricted universe multiverse<br>deb <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic-backports main restricted universe multiverse<br>deb-src <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic main restricted universe multiverse<br>deb-src <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic-security main restricted universe multiverse<br>deb-src <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic-updates main restricted universe multiverse<br>deb-src <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic-proposed main restricted universe multiverse<br>deb-src <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic-backports main restricted universe multiverse</p>
+</blockquote>
+<h3 id="清华源"><a href="#清华源" class="headerlink" title="清华源"></a>清华源</h3><blockquote>
+<p>deb <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic main restricted universe multiverse<br>deb-src <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic main restricted universe multiverse<br>deb <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic-updates main restricted universe multiverse<br>deb-src <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic-updates main restricted universe multiverse<br>deb <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic-backports main restricted universe multiverse<br>deb-src <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic-backports main restricted universe multiverse<br>deb <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic-security main restricted universe multiverse<br>deb-src <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic-security main restricted universe multiverse<br>deb <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic-proposed main restricted universe multiverse<br>deb-src <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic-proposed main restricted universe multiverse</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>Docker</tag>
+        <tag>Ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Faster R-CNN项目调试</title>
+    <url>/2019/12/29/Faster%20R-CNN%E9%A1%B9%E7%9B%AE%E8%B0%83%E8%AF%95/</url>
+    <content><![CDATA[<h1 id="Faster-R-CNN项目调试"><a href="#Faster-R-CNN项目调试" class="headerlink" title="Faster R-CNN项目调试"></a>Faster R-CNN项目调试</h1><h2 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h2><p><a href="https://github.com/jwyang/faster-rcnn.pytorch" title="项目地址">https://github.com/jwyang/faster-rcnn.pytorch</a></p>
+<h2 id="根据README-md创建虚拟环境"><a href="#根据README-md创建虚拟环境" class="headerlink" title="根据README.md创建虚拟环境"></a>根据README.md创建虚拟环境</h2><ol>
+<li><p>创建python3.6的anaconda虚拟环境（命名为pytorch0.4.1）<br><code>conda create -n pytorch0.4.1 python=3.6</code></p>
+</li>
+<li><p>激活pytorch0.4.1虚拟环境<br><code>conda activate pytorch0.4.1</code></p>
+</li>
+<li><p>安装pytorch0.4.1（基于CUDA9.2）<br><code>conda install pytorch=0.4.1 cuda92 -c pytorch</code></p>
+</li>
+<li><p>安装torchvision<br><code>conda install torchvision</code></p>
+</li>
+<li><p>安装实验需要的软件包<br><code>pip install -i https://mirrors.bfsu.edu.cn/pypi/web/simple -r requirements.txt</code></p>
+</li>
+<li><p>测试pytorch是否支持GPU</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python</span><br><span class="line">import torch</span><br><span class="line">torch.version.cuda</span><br><span class="line">torch.cuda.is_available()</span><br></pre></td></tr></table></figure>
+<p>返回True即成功</p>
+</li>
+</ol>
+<h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><ol>
+<li><p>在faster-rcnn-pytorch文件下新建data文件夹，在data文件夹下新建pretrained_model文件夹并拷贝预训练模型至”data/pretrained_model”</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir data</span><br><span class="line"><span class="built_in">cd</span> data</span><br><span class="line">mkdir pretrained_model</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改lib/make.sh中的CUDA_ARCH，执行编译</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> lib</span><br><span class="line">sh make.sh</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改lib/datasets/pascal_voc.py中的数据集加载路径</p>
+</li>
+<li><p>修改lib/datasets/pascal_voc.py中的数据类别</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">self._classes = (<span class="string">&#x27;__background__&#x27;</span>,  <span class="comment"># always index 0</span></span><br><span class="line">                 <span class="string">&#x27;aeroplane&#x27;</span>, <span class="string">&#x27;bicycle&#x27;</span>, <span class="string">&#x27;bird&#x27;</span>, <span class="string">&#x27;boat&#x27;</span>,</span><br><span class="line">                 <span class="string">&#x27;bottle&#x27;</span>, <span class="string">&#x27;bus&#x27;</span>, <span class="string">&#x27;car&#x27;</span>, <span class="string">&#x27;cat&#x27;</span>, <span class="string">&#x27;chair&#x27;</span>,</span><br><span class="line">                 <span class="string">&#x27;cow&#x27;</span>, <span class="string">&#x27;diningtable&#x27;</span>, <span class="string">&#x27;dog&#x27;</span>, <span class="string">&#x27;horse&#x27;</span>,</span><br><span class="line">                 <span class="string">&#x27;motorbike&#x27;</span>, <span class="string">&#x27;person&#x27;</span>, <span class="string">&#x27;pottedplant&#x27;</span>,</span><br><span class="line">                 <span class="string">&#x27;sheep&#x27;</span>, <span class="string">&#x27;sofa&#x27;</span>, <span class="string">&#x27;train&#x27;</span>, <span class="string">&#x27;tvmonitor&#x27;</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改lib/model/faster_rcnn/faster_rcnn.py文件<br>在return前添加如下代码</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> self.training:</span><br><span class="line">    rpn_loss_cls = torch.unsqueeze(rpn_loss_cls, <span class="number">0</span>)</span><br><span class="line">    rpn_loss_bbox = torch.unsqueeze(rpn_loss_bbox, <span class="number">0</span>)</span><br><span class="line">    RCNN_loss_cls = torch.unsqueeze(RCNN_loss_cls, <span class="number">0</span>)</span><br><span class="line">    RCNN_loss_bbox = torch.unsqueeze(RCNN_loss_bbox, <span class="number">0</span>)</span><br><span class="line">````</span><br><span class="line"></span><br><span class="line"><span class="number">6.</span> 删除data/cache/voc_2007_trainval_gt_roidb.pkl缓存文件</span><br><span class="line"></span><br><span class="line"><span class="comment">## 训练</span></span><br><span class="line"><span class="number">1.</span> 运行tensorboard</span><br><span class="line">`tensorboard --logdir ./logs`</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> 开始训练</span><br><span class="line">`CUDA_VISIBLE_DEVICES=<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span> python trainval_net.py --bs <span class="number">32</span> --nw <span class="number">4</span> --mGPUs`</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span> 解决问题</span><br><span class="line">解决<span class="keyword">assert</span> (boxes[:, <span class="number">2</span>] &gt;= boxes[:, <span class="number">0</span>]).<span class="built_in">all</span>()错误</span><br><span class="line">```bash</span><br><span class="line">File <span class="string">&quot;/py-faster-rcnn/tools/../lib/datasets/imdb.py&quot;</span>, line <span class="number">108</span>, <span class="keyword">in</span> 	append_flipped_images</span><br><span class="line"><span class="keyword">assert</span> (boxes[:, <span class="number">2</span>] &gt;= boxes[:, <span class="number">0</span>]).<span class="built_in">all</span>()</span><br><span class="line">AssertionError</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li><p>（1）修改lib/datasets/imdb.py中的append_flipped_images()函数。<br>在<code>oxes[:, 2] = widths[i] - oldx1 - 1</code>一行下面加入代码：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> b <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(boxes)):</span><br><span class="line">    <span class="keyword">if</span> boxes[b][<span class="number">2</span>]&lt; boxes[b][<span class="number">0</span>]:</span><br><span class="line">        boxes[b][<span class="number">0</span>] = <span class="number">0</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>（2）修改lib/datasets/pascal_voc.py中的_load_pascal_annotation()函数。<br>将Xmin, Ymin, Xmax, Ymax的减一操作去掉，变为：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Load object bounding boxes into a data frame.</span></span><br><span class="line"><span class="keyword">for</span> ix, obj <span class="keyword">in</span> <span class="built_in">enumerate</span>(objs):</span><br><span class="line">    bbox = obj.find(<span class="string">&#x27;bndbox&#x27;</span>)</span><br><span class="line">    <span class="comment"># Make pixel indexes 0-based</span></span><br><span class="line">    x1 = <span class="built_in">float</span>(bbox.find(<span class="string">&#x27;xmin&#x27;</span>).text)</span><br><span class="line">    y1 = <span class="built_in">float</span>(bbox.find(<span class="string">&#x27;ymin&#x27;</span>).text)</span><br><span class="line">    x2 = <span class="built_in">float</span>(bbox.find(<span class="string">&#x27;xmax&#x27;</span>).text)</span><br><span class="line">    y2 = <span class="built_in">float</span>(bbox.find(<span class="string">&#x27;ymax&#x27;</span>).text)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>（3）（可选，如果（1）和（2）可以解决问题，就没必要用（3））修改<code>lib/fast_rcnn/config.py</code>，不使图片实现翻转，如下改为：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Use horizontally-flipped images during training?</span></span><br><span class="line">__C.TRAIN.USE_FLIPPED = <span class="literal">False</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><ol>
+<li><p>修改demo.py</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pascal_classes = np.asarray([<span class="string">&#x27;__background__&#x27;</span>,</span><br><span class="line">                     <span class="string">&#x27;aeroplane&#x27;</span>, <span class="string">&#x27;bicycle&#x27;</span>, <span class="string">&#x27;bird&#x27;</span>, <span class="string">&#x27;boat&#x27;</span>,</span><br><span class="line">                     <span class="string">&#x27;bottle&#x27;</span>, <span class="string">&#x27;bus&#x27;</span>, <span class="string">&#x27;car&#x27;</span>, <span class="string">&#x27;cat&#x27;</span>, <span class="string">&#x27;chair&#x27;</span>,</span><br><span class="line">                     <span class="string">&#x27;cow&#x27;</span>, <span class="string">&#x27;diningtable&#x27;</span>, <span class="string">&#x27;dog&#x27;</span>, <span class="string">&#x27;horse&#x27;</span>,</span><br><span class="line">                     <span class="string">&#x27;motorbike&#x27;</span>, <span class="string">&#x27;person&#x27;</span>, <span class="string">&#x27;pottedplant&#x27;</span>,</span><br><span class="line">                     <span class="string">&#x27;sheep&#x27;</span>, <span class="string">&#x27;sofa&#x27;</span>, <span class="string">&#x27;train&#x27;</span>, <span class="string">&#x27;tvmonitor&#x27;</span>])</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试<br><code>CUDA_VISIBLE_DEVICES=0 python demo.py --checksession $SESSION --checkepoch $EPOCH --checkpoint $CHECKPOINT --image_dir $IMAGEPATH</code></p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>项目调试</category>
+      </categories>
+      <tags>
+        <tag>Faster R-CNN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>HRNet项目调试</title>
+    <url>/2019/12/29/HRNet%E9%A1%B9%E7%9B%AE%E8%B0%83%E8%AF%95/</url>
+    <content><![CDATA[<h1 id="HRNet项目调试"><a href="#HRNet项目调试" class="headerlink" title="HRNet项目调试"></a>HRNet项目调试</h1><h2 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h2><p><a href="https://github.com/leoxiaobin/deep-high-resolution-net.pytorch" title="项目地址">https://github.com/leoxiaobin/deep-high-resolution-net.pytorch</a></p>
+<h2 id="根据README-md创建虚拟环境"><a href="#根据README-md创建虚拟环境" class="headerlink" title="根据README.md创建虚拟环境"></a>根据README.md创建虚拟环境</h2><ol>
+<li><p>克隆项目并进入项目文件夹</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/leoxiaobin/deep-high-resolution-net.pytorch.git HRNet</span><br><span class="line"><span class="built_in">cd</span> HRNet/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建python3.6的anaconda虚拟环境（命名为HRNet）<br><code>conda create -n HRNet python=3.6</code></p>
+</li>
+<li><p>激活simple-HRNet虚拟环境<br><code>conda activate HRNet</code></p>
+</li>
+<li><p>安装实验需要的软件包<br><code>pip install -i https://mirrors.bfsu.edu.cn/pypi/web/simple -r requirements.txt</code></p>
+</li>
+</ol>
+<h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><ol>
+<li><p>编译库文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> lib</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装COCOAPI</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># COCOAPI=/path/to/clone/cocoapi</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/cocodataset/cocoapi.git <span class="variable">$COCOAPI</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$COCOAPI</span>/PythonAPI</span><br><span class="line"><span class="comment"># Install into global site-packages</span></span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建output文件夹和log文件夹</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir output </span><br><span class="line">mkdir <span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+<p>文件夹结构如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$&#123;POSE_ROOT&#125;</span><br><span class="line">├── data</span><br><span class="line">├── experiments</span><br><span class="line">├── lib</span><br><span class="line">├── log</span><br><span class="line">├── models</span><br><span class="line">├── output</span><br><span class="line">├── tools </span><br><span class="line">├── README.md</span><br><span class="line">└── requirements.txt</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>下载预训练权重至<code>/models/pytorch/pose_coco</code>文件夹下<br>预训练权重：<code>pose_hrnet_w48_384x288.pth</code></p>
+</li>
+<li><p>准备HRNet数据集<br>将制作好的数据集放至<code>./data/coco</code>文件夹下，包含annotations和images两个文件夹，images文件夹下包含train2017和val2017两个子文件夹，数据集格式与MSCOCO相同</p>
+</li>
+</ol>
+<h2 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h2><ol>
+<li><p>编辑配置文件<br><code>vim experiments/coco/hrnet/w48_384x288_adam_lr1e-3.yaml</code><br>更改<code>GPUS</code>、<code>PRETRAINED</code>、<code>BATCH_SIZE_PER_GPU</code></p>
+</li>
+<li><p>取消tensorboardX使用<br>注释掉<code>tools/train.py</code>中的111行代码<br><code># writer_dict[&#39;writer&#39;].add_graph(model, (dump_input, ))</code></p>
+</li>
+<li><p>开始训练<br><code>CUDA_VISIBLE_DEVICES=0 python tools/train.py --cfg experiments/coco/hrnet/w48_384x288_adam_lr1e-3.yaml</code></p>
+</li>
+</ol>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">python tools&#x2F;test.py \</span><br><span class="line">    --cfg experiments&#x2F;coco&#x2F;hrnet&#x2F;w48_384x288_adam_lr1e-3.yaml \</span><br><span class="line">    TEST.MODEL_FILE models&#x2F;pytorch&#x2F;pose_coco&#x2F;pose_hrnet_w48_384x288.pth \</span><br><span class="line">    TEST.USE_GT_BBOX False</span><br></pre></td></tr></table></figure>
+
+<h2 id="可视化"><a href="#可视化" class="headerlink" title="可视化"></a>可视化</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">python visualization&#x2F;plot_coco.py \</span><br><span class="line">    --prediction output&#x2F;coco&#x2F;w48_384x288_adam_lr1e-3&#x2F;results&#x2F;keypoints_val2017_results_0.json \</span><br><span class="line">    --save-path visualization&#x2F;results</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>项目调试</category>
+      </categories>
+      <tags>
+        <tag>HRNet</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux基础指令</title>
     <url>/2019/09/29/Linux%E5%9F%BA%E7%A1%80%E6%8C%87%E4%BB%A4/</url>
     <content><![CDATA[<h1 id="Linux基础指令"><a href="#Linux基础指令" class="headerlink" title="Linux基础指令"></a>Linux基础指令</h1><h2 id="ls指令"><a href="#ls指令" class="headerlink" title="ls指令"></a>ls指令</h2><p>​    <strong>ls是list 的简写，ls指令可以查看文件目录。</strong></p>
@@ -574,6 +725,50 @@
       </tags>
   </entry>
   <entry>
+    <title>YOLOv3项目调试</title>
+    <url>/2019/12/29/YOLOv3%E9%A1%B9%E7%9B%AE%E8%B0%83%E8%AF%95/</url>
+    <content><![CDATA[<h1 id="YOLOv3项目调试"><a href="#YOLOv3项目调试" class="headerlink" title="YOLOv3项目调试"></a>YOLOv3项目调试</h1><h2 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h2><p><a href="https://github.com/eriklindernoren/PyTorch-YOLOv3" title="项目地址">https://github.com/eriklindernoren/PyTorch-YOLOv3</a></p>
+<h2 id="根据README-md创建虚拟环境"><a href="#根据README-md创建虚拟环境" class="headerlink" title="根据README.md创建虚拟环境"></a>根据README.md创建虚拟环境</h2><ol>
+<li><p>克隆项目并进入项目文件夹</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/eriklindernoren/PyTorch-YOLOv3</span><br><span class="line"><span class="built_in">cd</span> PyTorch-YOLOv3/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建python3.6的anaconda虚拟环境（命名为YOLOv3）<br><code>conda create -n YOLOv3 python=3.6</code></p>
+</li>
+<li><p>激活YOLOv3虚拟环境<br><code>conda activate YOLOv3</code></p>
+</li>
+<li><p>安装实验需要的软件包<br><code>pip install -i https://mirrors.bfsu.edu.cn/pypi/web/simple -r requirements.txt</code></p>
+</li>
+</ol>
+<h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><ol>
+<li><p>下载预训练权重</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> weights</span><br><span class="line">bash download_weights.sh</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建自定义模型（生成yolov3-custom.cfg）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> config</span><br><span class="line">bash create_custom_model.sh &lt;num-classes&gt; <span class="comment"># num-classes目标检测类别数</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置类别名称<br><code>vim data/custom/classes.names</code>每个类别占一行</p>
+</li>
+<li><p>准备个人数据集</p>
+</li>
+</ol>
+<ul>
+<li>（1）图像放在data/custom/images文件夹中</li>
+<li>（2）注释文件放在data/custom/labels文件夹中<br>注：注释文件中的每一行都对应一个边界框，具有<code>label_idx</code> <code>x_center</code> <code>y_center</code> <code>width</code> <code>height</code>五个参数，其中坐标应该被缩放到[0, 1]（即：坐标值/对应宽高）</li>
+</ul>
+<ol start="5">
+<li>定义训练集和验证集<br>生成对应的data/custom/train.txt文件和data/custom/valid.txt文件</li>
+</ol>
+<h2 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h2><p><code>python3 train.py --model_def config/yolov3-custom.cfg --data_config config/custom.data --pretrained_weights weights/darknet53.conv.74</code></p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p><code>CUDA_VISIBLE_DEVICES=0 python detect.py --model_def config/yolov3-custom.cfg --weights_path checkpoints/yolov3_ckpt_99.pth --class_path data/custom/classes.names</code></p>
+]]></content>
+      <categories>
+        <category>项目调试</category>
+      </categories>
+      <tags>
+        <tag>YOLOv3</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/1997/12/30/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -590,6 +785,58 @@
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>simple-HRNet项目调试</title>
+    <url>/2019/12/29/simple-HRNet%E9%A1%B9%E7%9B%AE%E8%B0%83%E8%AF%95/</url>
+    <content><![CDATA[<h1 id="simple-HRNet项目调试"><a href="#simple-HRNet项目调试" class="headerlink" title="simple-HRNet项目调试"></a>simple-HRNet项目调试</h1><h2 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h2><p><a href="https://github.com/stefanopini/simple-HRNet" title="项目地址">https://github.com/stefanopini/simple-HRNet</a></p>
+<h2 id="根据README-md创建虚拟环境"><a href="#根据README-md创建虚拟环境" class="headerlink" title="根据README.md创建虚拟环境"></a>根据README.md创建虚拟环境</h2><ol>
+<li><p>克隆项目并进入项目文件夹</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/stefanopini/simple-HRNet.git</span><br><span class="line"><span class="built_in">cd</span> simple-HRNet/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建python3.6的anaconda虚拟环境（命名为simple-HRNet）<br><code>conda create -n simple-HRNet python=3.6</code></p>
+</li>
+<li><p>激活simple-HRNet虚拟环境<br><code>conda activate simple-HRNet</code></p>
+</li>
+<li><p>安装实验需要的软件包<br><code>pip install -i https://mirrors.bfsu.edu.cn/pypi/web/simple -r requirements.txt</code></p>
+</li>
+</ol>
+<h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><ol>
+<li><p>下载预训练权重至weights文件夹下</p>
+</li>
+<li><p>设置目标检测器</p>
+</li>
+</ol>
+<ul>
+<li>（1）克隆YOLOv3至<code>./models/detectors</code>文件夹下，将<code>PyTorch-YOLOv3</code>文件夹名改为<code>yolo</code></li>
+<li>（2）进入<code>./models/detectors/yolo</code>文件夹，安装YOLOv3需要的软件包<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ./models/detectors/yolo</span><br><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></table></figure></li>
+<li>（3）创建自定义模型（生成yolov3-custom.cfg）<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> config</span><br><span class="line">bash create_custom_model.sh &lt;num-classes&gt; <span class="comment"># num-classes目标检测类别数</span></span><br></pre></td></tr></table></figure></li>
+<li>（4）设置类别名称<br><code>vim data/custom/classes.names</code>每个类别占一行</li>
+<li>（5）将训练好的YOLOv3模型放至<code>checkpoints</code>文件夹下</li>
+</ul>
+<ol start="3">
+<li><p>准备HRNet数据集<br>将制作好的数据集放至<code>./datasets/COCO</code>文件夹下，包含annotations、train2017、val2017三个文件夹，数据集格式与MSCOCO相同</p>
+</li>
+<li><p>编译nms模块</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> misc</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h2><p><code>CUDA_VISIBLE_DEVICES=0 python scripts/train_coco.py --pretrained_weight_path weights/pose_hrnet_w48_384x288.pth --exp_name train --epochs 2000</code></p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><ul>
+<li><p>单人图像测试<br><code>CUDA_VISIBLE_DEVICES=0 python scripts/image-demo.py --single_person</code></p>
+</li>
+<li><p>多人视频测试<br><code>CUDA_VISIBLE_DEVICES=0 python scripts/live-demo.py --filename test.mp4 --save_video</code></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>项目调试</category>
+      </categories>
+      <tags>
+        <tag>HRNet</tag>
+        <tag>YOLOv3</tag>
+      </tags>
   </entry>
   <entry>
     <title>编译安装FFmpeg</title>
@@ -660,44 +907,6 @@
       </categories>
       <tags>
         <tag>GCC</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Docker安装ubuntu16.04容器</title>
-    <url>/2019/10/29/Docker%E5%AE%89%E8%A3%85ubuntu16.04%E5%AE%B9%E5%99%A8/</url>
-    <content><![CDATA[<h1 id="Docker安装Ubuntu16-04容器"><a href="#Docker安装Ubuntu16-04容器" class="headerlink" title="Docker安装Ubuntu16.04容器"></a>Docker安装Ubuntu16.04容器</h1><h2 id="Docker安装Ubuntu16-04"><a href="#Docker安装Ubuntu16-04" class="headerlink" title="Docker安装Ubuntu16.04"></a>Docker安装Ubuntu16.04</h2><p><code>docker pull ubuntu:16.04</code></p>
-<h2 id="运行Ubuntu容器"><a href="#运行Ubuntu容器" class="headerlink" title="运行Ubuntu容器"></a>运行Ubuntu容器</h2><p><code>docker run -itd --name ubuntu ubuntu:16.04</code></p>
-<h2 id="进入Ubuntu容器"><a href="#进入Ubuntu容器" class="headerlink" title="进入Ubuntu容器"></a>进入Ubuntu容器</h2><p><code>docker exec -it ubuntu bash</code></p>
-<h3 id="更新软件源"><a href="#更新软件源" class="headerlink" title="更新软件源"></a>更新软件源</h3><h4 id="修改-etc-apt-sources-list文件"><a href="#修改-etc-apt-sources-list文件" class="headerlink" title="修改/etc/apt/sources.list文件"></a>修改/etc/apt/sources.list文件</h4><blockquote>
-<p>echo “”&gt;/etc/apt/sources.list<br>echo “deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-security main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-updates main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-proposed main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-backports main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-security main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-updates main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-proposed main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list<br>echo “deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-backports main restricted universe multiverse”&gt;&gt;/etc/apt/sources.list</p>
-</blockquote>
-<h4 id="然后更新"><a href="#然后更新" class="headerlink" title="然后更新"></a>然后更新</h4><blockquote>
-<p>apt-get update</p>
-</blockquote>
-<h3 id="查看ubuntu安装的扩展包"><a href="#查看ubuntu安装的扩展包" class="headerlink" title="查看ubuntu安装的扩展包"></a>查看ubuntu安装的扩展包</h3><p><code>dpkg --get-selections</code></p>
-<h3 id="安装vim"><a href="#安装vim" class="headerlink" title="安装vim"></a>安装vim</h3><p><code>apt-get install vim</code></p>
-<h3 id="安装基础网络命令：ping、ifconfig和wget"><a href="#安装基础网络命令：ping、ifconfig和wget" class="headerlink" title="安装基础网络命令：ping、ifconfig和wget"></a>安装基础网络命令：ping、ifconfig和wget</h3><blockquote>
-<p>apt-get install net-tools        # ifconfig<br>apt-get install iputils-ping        # ping<br>apt-get install wget            #wget</p>
-</blockquote>
-<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><h3 id="阿里源"><a href="#阿里源" class="headerlink" title="阿里源"></a>阿里源</h3><blockquote>
-<p>deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic main restricted universe multiverse<br>deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-security main restricted universe multiverse<br>deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-updates main restricted universe multiverse<br>deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-proposed main restricted universe multiverse<br>deb <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-backports main restricted universe multiverse<br>deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic main restricted universe multiverse<br>deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-security main restricted universe multiverse<br>deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-updates main restricted universe multiverse<br>deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-proposed main restricted universe multiverse<br>deb-src <a href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> bionic-backports main restricted universe multiverse</p>
-</blockquote>
-<h3 id="中科大源"><a href="#中科大源" class="headerlink" title="中科大源"></a>中科大源</h3><blockquote>
-<p>deb <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic main restricted universe multiverse<br>deb-src <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic main restricted universe multiverse<br>deb <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic-updates main restricted universe multiverse<br>deb-src <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic-updates main restricted universe multiverse<br>deb <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic-backports main restricted universe multiverse<br>deb-src <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic-backports main restricted universe multiverse<br>deb <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic-security main restricted universe multiverse<br>deb-src <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic-security main restricted universe multiverse<br>deb <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic-proposed main restricted universe multiverse<br>deb-src <a href="https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a> bionic-proposed main restricted universe multiverse</p>
-</blockquote>
-<h3 id="163源"><a href="#163源" class="headerlink" title="163源"></a>163源</h3><blockquote>
-<p>deb <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic main restricted universe multiverse<br>deb <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic-security main restricted universe multiverse<br>deb <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic-updates main restricted universe multiverse<br>deb <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic-proposed main restricted universe multiverse<br>deb <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic-backports main restricted universe multiverse<br>deb-src <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic main restricted universe multiverse<br>deb-src <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic-security main restricted universe multiverse<br>deb-src <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic-updates main restricted universe multiverse<br>deb-src <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic-proposed main restricted universe multiverse<br>deb-src <a href="http://mirrors.163.com/ubuntu/">http://mirrors.163.com/ubuntu/</a> bionic-backports main restricted universe multiverse</p>
-</blockquote>
-<h3 id="清华源"><a href="#清华源" class="headerlink" title="清华源"></a>清华源</h3><blockquote>
-<p>deb <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic main restricted universe multiverse<br>deb-src <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic main restricted universe multiverse<br>deb <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic-updates main restricted universe multiverse<br>deb-src <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic-updates main restricted universe multiverse<br>deb <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic-backports main restricted universe multiverse<br>deb-src <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic-backports main restricted universe multiverse<br>deb <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic-security main restricted universe multiverse<br>deb-src <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic-security main restricted universe multiverse<br>deb <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic-proposed main restricted universe multiverse<br>deb-src <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a> bionic-proposed main restricted universe multiverse</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>环境搭建</category>
-      </categories>
-      <tags>
-        <tag>Docker</tag>
-        <tag>Ubuntu</tag>
       </tags>
   </entry>
   <entry>

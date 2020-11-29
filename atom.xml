@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2020-11-28T11:54:05.708Z</updated>
+  <updated>2020-11-29T09:30:21.606Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,108 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Faster R-CNN项目调试</title>
+    <link href="http://example.com/2019/12/29/Faster%20R-CNN%E9%A1%B9%E7%9B%AE%E8%B0%83%E8%AF%95/"/>
+    <id>http://example.com/2019/12/29/Faster%20R-CNN%E9%A1%B9%E7%9B%AE%E8%B0%83%E8%AF%95/</id>
+    <published>2019-12-29T04:12:12.000Z</published>
+    <updated>2020-11-29T09:30:21.606Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Faster-R-CNN项目调试&quot;&gt;&lt;a href=&quot;#Faster-R-CNN项目调试&quot; class=&quot;headerlink&quot; title=&quot;Faster R-CNN项目调试&quot;&gt;&lt;/a&gt;Faster R-CNN项目调试&lt;/h1&gt;&lt;h2 id=&quot;项目地址&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="项目调试" scheme="http://example.com/categories/%E9%A1%B9%E7%9B%AE%E8%B0%83%E8%AF%95/"/>
+    
+    
+    <category term="Faster R-CNN" scheme="http://example.com/tags/Faster-R-CNN/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>HRNet项目调试</title>
+    <link href="http://example.com/2019/12/29/HRNet%E9%A1%B9%E7%9B%AE%E8%B0%83%E8%AF%95/"/>
+    <id>http://example.com/2019/12/29/HRNet%E9%A1%B9%E7%9B%AE%E8%B0%83%E8%AF%95/</id>
+    <published>2019-12-29T04:12:12.000Z</published>
+    <updated>2020-11-29T09:29:32.438Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;HRNet项目调试&quot;&gt;&lt;a href=&quot;#HRNet项目调试&quot; class=&quot;headerlink&quot; title=&quot;HRNet项目调试&quot;&gt;&lt;/a&gt;HRNet项目调试&lt;/h1&gt;&lt;h2 id=&quot;项目地址&quot;&gt;&lt;a href=&quot;#项目地址&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="项目调试" scheme="http://example.com/categories/%E9%A1%B9%E7%9B%AE%E8%B0%83%E8%AF%95/"/>
+    
+    
+    <category term="HRNet" scheme="http://example.com/tags/HRNet/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>YOLOv3项目调试</title>
+    <link href="http://example.com/2019/12/29/YOLOv3%E9%A1%B9%E7%9B%AE%E8%B0%83%E8%AF%95/"/>
+    <id>http://example.com/2019/12/29/YOLOv3%E9%A1%B9%E7%9B%AE%E8%B0%83%E8%AF%95/</id>
+    <published>2019-12-29T04:12:12.000Z</published>
+    <updated>2020-11-29T08:08:07.350Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;YOLOv3项目调试&quot;&gt;&lt;a href=&quot;#YOLOv3项目调试&quot; class=&quot;headerlink&quot; title=&quot;YOLOv3项目调试&quot;&gt;&lt;/a&gt;YOLOv3项目调试&lt;/h1&gt;&lt;h2 id=&quot;项目地址&quot;&gt;&lt;a href=&quot;#项目地址&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="项目调试" scheme="http://example.com/categories/%E9%A1%B9%E7%9B%AE%E8%B0%83%E8%AF%95/"/>
+    
+    
+    <category term="YOLOv3" scheme="http://example.com/tags/YOLOv3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>simple-HRNet项目调试</title>
+    <link href="http://example.com/2019/12/29/simple-HRNet%E9%A1%B9%E7%9B%AE%E8%B0%83%E8%AF%95/"/>
+    <id>http://example.com/2019/12/29/simple-HRNet%E9%A1%B9%E7%9B%AE%E8%B0%83%E8%AF%95/</id>
+    <published>2019-12-29T04:12:12.000Z</published>
+    <updated>2020-11-29T09:13:31.597Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;simple-HRNet项目调试&quot;&gt;&lt;a href=&quot;#simple-HRNet项目调试&quot; class=&quot;headerlink&quot; title=&quot;simple-HRNet项目调试&quot;&gt;&lt;/a&gt;simple-HRNet项目调试&lt;/h1&gt;&lt;h2 id=&quot;项目地址&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="项目调试" scheme="http://example.com/categories/%E9%A1%B9%E7%9B%AE%E8%B0%83%E8%AF%95/"/>
+    
+    
+    <category term="HRNet" scheme="http://example.com/tags/HRNet/"/>
+    
+    <category term="YOLOv3" scheme="http://example.com/tags/YOLOv3/"/>
+    
+  </entry>
   
   <entry>
     <title>CUDA、cudnn安装</title>
@@ -65,6 +167,33 @@
     
     
     <category term="Docker" scheme="http://example.com/tags/Docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Docker安装ubuntu16.04容器</title>
+    <link href="http://example.com/2019/10/29/Docker%E5%AE%89%E8%A3%85ubuntu16.04%E5%AE%B9%E5%99%A8/"/>
+    <id>http://example.com/2019/10/29/Docker%E5%AE%89%E8%A3%85ubuntu16.04%E5%AE%B9%E5%99%A8/</id>
+    <published>2019-10-29T04:12:12.000Z</published>
+    <updated>2020-11-28T10:50:10.925Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Docker安装Ubuntu16-04容器&quot;&gt;&lt;a href=&quot;#Docker安装Ubuntu16-04容器&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="环境搭建" scheme="http://example.com/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    
+    
+    <category term="Docker" scheme="http://example.com/tags/Docker/"/>
+    
+    <category term="Ubuntu" scheme="http://example.com/tags/Ubuntu/"/>
     
   </entry>
   
@@ -144,33 +273,6 @@
     
     
     <category term="GCC" scheme="http://example.com/tags/GCC/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Docker安装ubuntu16.04容器</title>
-    <link href="http://example.com/2019/10/29/Docker%E5%AE%89%E8%A3%85ubuntu16.04%E5%AE%B9%E5%99%A8/"/>
-    <id>http://example.com/2019/10/29/Docker%E5%AE%89%E8%A3%85ubuntu16.04%E5%AE%B9%E5%99%A8/</id>
-    <published>2019-10-29T04:12:12.000Z</published>
-    <updated>2020-11-28T10:50:10.925Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Docker安装Ubuntu16-04容器&quot;&gt;&lt;a href=&quot;#Docker安装Ubuntu16-04容器&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="环境搭建" scheme="http://example.com/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
-    
-    
-    <category term="Docker" scheme="http://example.com/tags/Docker/"/>
-    
-    <category term="Ubuntu" scheme="http://example.com/tags/Ubuntu/"/>
     
   </entry>
   
