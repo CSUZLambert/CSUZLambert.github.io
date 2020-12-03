@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    torchvision Faster R-CNN |  ZLambert
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+<link rel="alternate" href="/atom.xml" title="ZLambert" type="application/atom+xml">
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-torchvision Faster R-CNN"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  torchvision Faster R-CNN
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/01/29/torchvision%20Faster%20R-CNN/" class="article-date">
+  <time datetime="2020-01-29T04:12:12.000Z" itemprop="datePublished">2020-01-29</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE%E8%B0%83%E8%AF%95/">项目调试</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">1.3k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">6 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="torchvision-Faster-R-CNN"><a href="#torchvision-Faster-R-CNN" class="headerlink" title="torchvision Faster R-CNN"></a>torchvision Faster R-CNN</h1><h2 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h2><p>torchvision Github项目地址： <a target="_blank" rel="noopener" href="https://github.com/pytorch/vision" title="项目地址">https://github.com/pytorch/vision</a></p>
+<h2 id="创建虚拟环境"><a href="#创建虚拟环境" class="headerlink" title="创建虚拟环境"></a>创建虚拟环境</h2><ol>
+<li><p>创建python3.6的anaconda虚拟环境（命名为pytorch）<br><code>conda create -n pytorch python=3.6</code></p>
+</li>
+<li><p>激活pytorch虚拟环境<br><code>conda activate pytorch</code></p>
+</li>
+<li><p>安装pytorch、torchvision<br><code>conda install pytorch torchvision torchaudio cudatoolkit=9.2 -c pytorch</code></p>
+</li>
+</ol>
+<h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><ol>
+<li><p>安装COCOAPI</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># COCOAPI=/path/to/clone/cocoapi</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/cocodataset/cocoapi.git <span class="variable">$COCOAPI</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$COCOAPI</span>/PythonAPI</span><br><span class="line"><span class="comment"># Install into global site-packages</span></span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>制作数据集<br>数据集格式与PASCAL VOC数据集相同，包含JPEGImages和Annotations<br>注意：Annotations文件中元素应具有合理性！<br>定义数据集类<code>Person.py</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> PIL.Image <span class="keyword">as</span> Image</span><br><span class="line"><span class="keyword">from</span> xml.dom.minidom <span class="keyword">import</span> parse</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>(<span class="params">torch.utils.data.Dataset</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, root, transforms=<span class="literal">None</span></span>):</span></span><br><span class="line">        self.root = root</span><br><span class="line">        self.transforms = transforms</span><br><span class="line">        <span class="comment"># 加载所有的图像和对应的xml文件</span></span><br><span class="line">        self.imgs = <span class="built_in">list</span>(<span class="built_in">sorted</span>(os.listdir(os.path.join(root, <span class="string">&quot;JPEGImages&quot;</span>))))</span><br><span class="line">        self.bbox_xml = <span class="built_in">list</span>(<span class="built_in">sorted</span>(os.listdir(os.path.join(root, <span class="string">&quot;Annotations&quot;</span>))))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__len__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(self.imgs)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span>(<span class="params">self, idx</span>):</span></span><br><span class="line">        img_path = os.path.join(self.root, <span class="string">&quot;JPEGImages&quot;</span>, self.imgs[idx])</span><br><span class="line">        bbox_xml_path = os.path.join(self.root, <span class="string">&quot;Annotations&quot;</span>, self.bbox_xml[idx])</span><br><span class="line">        img = Image.<span class="built_in">open</span>(img_path).convert(<span class="string">&quot;RGB&quot;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 解析xml文件</span></span><br><span class="line">        dom = parse(bbox_xml_path)</span><br><span class="line">        <span class="comment"># 获取文档元素对象</span></span><br><span class="line">        data = dom.documentElement</span><br><span class="line">        <span class="comment"># 获取 objects</span></span><br><span class="line">        objects = data.getElementsByTagName(<span class="string">&#x27;object&#x27;</span>)</span><br><span class="line"></span><br><span class="line">        boxes = []</span><br><span class="line">        labels = []</span><br><span class="line">        <span class="keyword">for</span> object_ <span class="keyword">in</span> objects:</span><br><span class="line">            labels.append(np.<span class="built_in">int</span>(<span class="number">1</span>))  <span class="comment"># 背景的label是0，person的label是1</span></span><br><span class="line"></span><br><span class="line">            bndbox = object_.getElementsByTagName(<span class="string">&#x27;bndbox&#x27;</span>)[<span class="number">0</span>]</span><br><span class="line">            xmin = np.<span class="built_in">float</span>(bndbox.getElementsByTagName(<span class="string">&#x27;xmin&#x27;</span>)[<span class="number">0</span>].childNodes[<span class="number">0</span>].nodeValue)</span><br><span class="line">            ymin = np.<span class="built_in">float</span>(bndbox.getElementsByTagName(<span class="string">&#x27;ymin&#x27;</span>)[<span class="number">0</span>].childNodes[<span class="number">0</span>].nodeValue)</span><br><span class="line">            xmax = np.<span class="built_in">float</span>(bndbox.getElementsByTagName(<span class="string">&#x27;xmax&#x27;</span>)[<span class="number">0</span>].childNodes[<span class="number">0</span>].nodeValue)</span><br><span class="line">            ymax = np.<span class="built_in">float</span>(bndbox.getElementsByTagName(<span class="string">&#x27;ymax&#x27;</span>)[<span class="number">0</span>].childNodes[<span class="number">0</span>].nodeValue)</span><br><span class="line">            boxes.append([xmin, ymin, xmax, ymax])</span><br><span class="line"></span><br><span class="line">        boxes = torch.as_tensor(boxes, dtype=torch.float32)</span><br><span class="line"></span><br><span class="line">        labels = torch.as_tensor(labels, dtype=torch.int64)</span><br><span class="line"></span><br><span class="line">        image_id = torch.tensor([idx])</span><br><span class="line">        area = (boxes[:, <span class="number">3</span>] - boxes[:, <span class="number">1</span>]) * (boxes[:, <span class="number">2</span>] - boxes[:, <span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">        iscrowd = torch.zeros((<span class="built_in">len</span>(objects),), dtype=torch.int64)</span><br><span class="line"></span><br><span class="line">        target = &#123;&#125;</span><br><span class="line">        target[<span class="string">&quot;boxes&quot;</span>] = boxes</span><br><span class="line">        target[<span class="string">&quot;labels&quot;</span>] = labels</span><br><span class="line">        target[<span class="string">&quot;image_id&quot;</span>] = image_id</span><br><span class="line">        target[<span class="string">&quot;area&quot;</span>] = area</span><br><span class="line">        target[<span class="string">&quot;iscrowd&quot;</span>] = iscrowd</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> self.transforms <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="comment"># 注意这里target(包括bbox)也进行了转换、增强，与from torchvision import transforms中的transforms不同</span></span><br><span class="line">            <span class="comment"># https://github.com/pytorch/vision/tree/master/references/detection中transforms.py里有RandomHorizontalFlip变换示例</span></span><br><span class="line">            img, target = self.transforms(img, target)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> img, target</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>定义模型</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model = torchvision.models.detection.fasterrcnn_resnet50_fpn(pretrained=<span class="literal">False</span>, progress=<span class="literal">True</span>, num_classes=<span class="number">2</span>, pretrained_backbone=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数据增强<br>在图像输入到网络前，需要对其进行数据增强。</p>
+</li>
+</ol>
+<ul>
+<li>由于Faster R-CNN模型本身可以处理归一化（默认使用ImageNet的均值和标准差来归一化）及尺度变化的问题，因此无需进行归一化或图像缩放操作。</li>
+<li>由于<code>from torchvision import transforms</code>中transforms只能对图片进行数据增强，无法同时改变图片对应的label标签，因此使用torchvision Github项目中封装好的用于模型训练和测试的函数：<a target="_blank" rel="noopener" href="https://github.com/pytorch/vision/tree/master/references/detection">https://github.com/pytorch/vision/tree/master/references/detection</a><br>需要<code>engine.py</code>、<code>utils.py</code>、<code>transforms.py</code>、<code>coco_utils.py</code>、<code>coco_eval.py</code>五个文件，其中transforms.py里面在对图像进行水平翻转（RandomHorizontalFlip）时变换target（bbox）。<br>示例:<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RandomHorizontalFlip</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, prob</span>):</span></span><br><span class="line">        self.prob = prob</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__call__</span>(<span class="params">self, image, target</span>):</span></span><br><span class="line">        <span class="keyword">if</span> random.random() &lt; self.prob:</span><br><span class="line">            height, width = image.shape[-<span class="number">2</span>:]</span><br><span class="line">            image = image.flip(-<span class="number">1</span>)</span><br><span class="line">            bbox = target[<span class="string">&quot;boxes&quot;</span>]</span><br><span class="line">            bbox[:, [<span class="number">0</span>, <span class="number">2</span>]] = width - bbox[:, [<span class="number">2</span>, <span class="number">0</span>]]</span><br><span class="line">            target[<span class="string">&quot;boxes&quot;</span>] = bbox</span><br><span class="line">            <span class="keyword">if</span> <span class="string">&quot;masks&quot;</span> <span class="keyword">in</span> target:</span><br><span class="line">                target[<span class="string">&quot;masks&quot;</span>] = target[<span class="string">&quot;masks&quot;</span>].flip(-<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">if</span> <span class="string">&quot;keypoints&quot;</span> <span class="keyword">in</span> target:</span><br><span class="line">                keypoints = target[<span class="string">&quot;keypoints&quot;</span>]</span><br><span class="line">                keypoints = _flip_coco_person_keypoints(keypoints, width)</span><br><span class="line">                target[<span class="string">&quot;keypoints&quot;</span>] = keypoints</span><br><span class="line">        <span class="keyword">return</span> image, target</span><br></pre></td></tr></table></figure>
+编写相应的数据增强函数<code>transform.py</code><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> transforms</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_transform</span>(<span class="params">train</span>):</span></span><br><span class="line">    trans = []</span><br><span class="line">    <span class="comment"># 将图像转换为Tensor</span></span><br><span class="line">    trans.append(transforms.ToTensor())</span><br><span class="line">    <span class="keyword">if</span> train:</span><br><span class="line">        <span class="comment"># 50%的概率水平翻转</span></span><br><span class="line">        trans.append(transforms.RandomHorizontalFlip(<span class="number">0.5</span>))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> transforms.Compose(trans)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol start="5">
+<li><p>编写训练文件（<code>train.py</code>）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> utils</span><br><span class="line"><span class="keyword">from</span> Person <span class="keyword">import</span> Person</span><br><span class="line"><span class="keyword">from</span> transform <span class="keyword">import</span> get_transform</span><br><span class="line"><span class="keyword">from</span> engine <span class="keyword">import</span> train_one_epoch, evaluate</span><br><span class="line"><span class="keyword">from</span> torchvision.models.detection <span class="keyword">import</span> fasterrcnn_resnet50_fpn</span><br><span class="line"></span><br><span class="line">epochs = <span class="number">200</span></span><br><span class="line">device = torch.device(<span class="string">&#x27;cuda&#x27;</span>) <span class="keyword">if</span> torch.cuda.is_available() <span class="keyword">else</span> torch.device(<span class="string">&#x27;cpu&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    root = <span class="string">&#x27;/home/Data/VOCdevkit/VOC2007&#x27;</span></span><br><span class="line">    <span class="comment"># 2 classes, person，background</span></span><br><span class="line">    num_classes = <span class="number">2</span></span><br><span class="line"></span><br><span class="line">    dataset = Person(root, get_transform(train=<span class="literal">True</span>))</span><br><span class="line">    dataset_test = Person(root, get_transform(train=<span class="literal">False</span>))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># split the dataset in train and test set</span></span><br><span class="line">    indices = torch.randperm(<span class="built_in">len</span>(dataset)).tolist()</span><br><span class="line">    dataset = torch.utils.data.Subset(dataset, indices[:-<span class="number">5000</span>])</span><br><span class="line">    dataset_test = torch.utils.data.Subset(dataset_test, indices[-<span class="number">5000</span>:])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># define training and validation data loaders</span></span><br><span class="line">    data_loader = torch.utils.data.DataLoader(</span><br><span class="line">        dataset, batch_size=<span class="number">64</span>, shuffle=<span class="literal">True</span>, num_workers=<span class="number">4</span>,</span><br><span class="line">        collate_fn=utils.collate_fn)</span><br><span class="line"></span><br><span class="line">    data_loader_test = torch.utils.data.DataLoader(</span><br><span class="line">        dataset_test, batch_size=<span class="number">64</span>, shuffle=<span class="literal">False</span>, num_workers=<span class="number">4</span>,</span><br><span class="line">        collate_fn=utils.collate_fn)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># define model</span></span><br><span class="line">    model = fasterrcnn_resnet50_fpn(pretrained=<span class="literal">False</span>, progress=<span class="literal">True</span>, num_classes=num_classes, pretrained_backbone=<span class="literal">True</span>)</span><br><span class="line">    <span class="comment"># move model to the device</span></span><br><span class="line">    model.to(device)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># construct an optimizer</span></span><br><span class="line">    params = [p <span class="keyword">for</span> p <span class="keyword">in</span> model.parameters() <span class="keyword">if</span> p.requires_grad]</span><br><span class="line">    <span class="comment"># SGD</span></span><br><span class="line">    optimizer = torch.optim.SGD(params, lr=<span class="number">0.0003</span>, momentum=<span class="number">0.9</span>, weight_decay=<span class="number">0.0005</span>)</span><br><span class="line">    lr_scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(optimizer, T_0=<span class="number">1</span>, T_mult=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(epochs):</span><br><span class="line">        train_one_epoch(model, optimizer, data_loader, device, epoch, print_freq=<span class="number">50</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># update the learning rate</span></span><br><span class="line">        lr_scheduler.step()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># evaluate on the test dataset</span></span><br><span class="line">        evaluate(model, data_loader_test, device=device)</span><br><span class="line">        torch.save(model.state_dict(), <span class="string">&#x27;./model/model.ckpt&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    print(<span class="string">&quot;OK!&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写测试文件（<code>test.py</code>）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">from</span> torchvision <span class="keyword">import</span> transforms</span><br><span class="line"><span class="keyword">from</span> torchvision.models.detection <span class="keyword">import</span> fasterrcnn_resnet50_fpn</span><br><span class="line"></span><br><span class="line">model = fasterrcnn_resnet50_fpn(pretrained=<span class="literal">False</span>, progress=<span class="literal">False</span>, num_classes=<span class="number">2</span>, pretrained_backbone=<span class="literal">False</span>)</span><br><span class="line">model.load_state_dict(torch.load(<span class="string">&#x27;./model/model.ckpt&#x27;</span>, map_location=torch.device(<span class="string">&#x27;cpu&#x27;</span>)))</span><br><span class="line">model.<span class="built_in">eval</span>()</span><br><span class="line"></span><br><span class="line">trans = transforms.Compose([</span><br><span class="line">    transforms.ToTensor()</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    root = <span class="string">&#x27;./&#x27;</span></span><br><span class="line">    images_dir = os.path.join(root, <span class="string">&#x27;JPEGImages&#x27;</span>)</span><br><span class="line">    output_dir = os.path.join(root, <span class="string">&#x27;output&#x27;</span>)</span><br><span class="line">    images = os.listdir(images_dir)</span><br><span class="line"></span><br><span class="line">    imgs = []</span><br><span class="line">    img_names = []</span><br><span class="line">    img_tensors = []</span><br><span class="line">    <span class="keyword">for</span> image <span class="keyword">in</span> images:</span><br><span class="line">        img_names.append(image)</span><br><span class="line">        image_path = os.path.join(images_dir, image)</span><br><span class="line">        img = cv2.imread(image_path)</span><br><span class="line">        imgs.append(img)</span><br><span class="line">        img_RGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)</span><br><span class="line">        img_tensor = trans(img_RGB)</span><br><span class="line"></span><br><span class="line">        img_tensors.append(img_tensor)</span><br><span class="line"></span><br><span class="line">    predictions = model(img_tensors)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> img, img_name, prediction <span class="keyword">in</span> <span class="built_in">zip</span>(imgs, img_names, predictions):</span><br><span class="line">        boxes = prediction[<span class="string">&#x27;boxes&#x27;</span>]</span><br><span class="line">        scores = prediction[<span class="string">&#x27;scores&#x27;</span>]</span><br><span class="line">        index = scores &gt; <span class="number">0.9</span></span><br><span class="line">        bboxes = boxes[index]</span><br><span class="line">        <span class="keyword">for</span> bbox <span class="keyword">in</span> bboxes:</span><br><span class="line">            cv2.rectangle(img, (<span class="built_in">int</span>(bbox[<span class="number">0</span>].item()), <span class="built_in">int</span>(bbox[<span class="number">1</span>].item())),</span><br><span class="line">                          (<span class="built_in">int</span>(bbox[<span class="number">2</span>].item()), <span class="built_in">int</span>(bbox[<span class="number">3</span>].item())), (<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>), <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">        output_path = os.path.join(output_dir, img_name)</span><br><span class="line">        cv2.imwrite(output_path, img)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h2><p><code>CUDA_VISIBLE_DEVICES=0 python train.py</code></p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p><code>python test.py</code></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2020/01/29/torchvision%20Faster%20R-CNN/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Faster-R-CNN/" rel="tag">Faster R-CNN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/torchvision/" rel="tag">torchvision</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2020/01/29/torchvision%20Mask%20R-CNN/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            torchvision Mask R-CNN
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/12/29/Faster%20R-CNN%E9%A1%B9%E7%9B%AE%E8%B0%83%E8%AF%95/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Faster R-CNN项目调试</div>
+      </a>
+    
+  </nav>
+
+   
+ 
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2015-2020
+        <i class="ri-heart-fill heart_icon"></i> Lambert
+      </li>
+    </ul>
+<!--
+    <ul>
+      <li>
+        
+        
+        
+        Powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+        <span class="division">|</span>
+        Theme - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+-->
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="ZLambert"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+  </div>
+</body>
+
+</html>

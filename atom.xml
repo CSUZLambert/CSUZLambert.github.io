@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2020-11-29T09:30:21.606Z</updated>
+  <updated>2020-12-03T13:25:54.701Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,60 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>torchvision Mask R-CNN</title>
+    <link href="http://example.com/2020/01/29/torchvision%20Mask%20R-CNN/"/>
+    <id>http://example.com/2020/01/29/torchvision%20Mask%20R-CNN/</id>
+    <published>2020-01-29T04:12:12.000Z</published>
+    <updated>2020-12-03T13:25:54.701Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;torchvision-Mask-R-CNN&quot;&gt;&lt;a href=&quot;#torchvision-Mask-R-CNN&quot; class=&quot;headerlink&quot; title=&quot;torchvision Mask R-CNN&quot;&gt;&lt;/a&gt;torchvision Mask</summary>
+        
+      
+    
+    
+    
+    <category term="项目调试" scheme="http://example.com/categories/%E9%A1%B9%E7%9B%AE%E8%B0%83%E8%AF%95/"/>
+    
+    
+    <category term="torchvision" scheme="http://example.com/tags/torchvision/"/>
+    
+    <category term="Mask R-CNN" scheme="http://example.com/tags/Mask-R-CNN/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>torchvision Faster R-CNN</title>
+    <link href="http://example.com/2020/01/29/torchvision%20Faster%20R-CNN/"/>
+    <id>http://example.com/2020/01/29/torchvision%20Faster%20R-CNN/</id>
+    <published>2020-01-29T04:12:12.000Z</published>
+    <updated>2020-12-03T12:31:03.839Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;torchvision-Faster-R-CNN&quot;&gt;&lt;a href=&quot;#torchvision-Faster-R-CNN&quot; class=&quot;headerlink&quot; title=&quot;torchvision Faster R-CNN&quot;&gt;&lt;/a&gt;torchvision</summary>
+        
+      
+    
+    
+    
+    <category term="项目调试" scheme="http://example.com/categories/%E9%A1%B9%E7%9B%AE%E8%B0%83%E8%AF%95/"/>
+    
+    
+    <category term="Faster R-CNN" scheme="http://example.com/tags/Faster-R-CNN/"/>
+    
+    <category term="torchvision" scheme="http://example.com/tags/torchvision/"/>
+    
+  </entry>
   
   <entry>
     <title>Faster R-CNN项目调试</title>
